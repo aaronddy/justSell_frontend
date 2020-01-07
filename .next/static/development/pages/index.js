@@ -4398,7 +4398,7 @@ function index() {
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!*****************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fkhn%2FKHN%2Fdevelop%2Fwecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js ***!
   \*****************************************************************************************************************************************************/
@@ -4421,5 +4421,5 @@ module.exports = dll_5f137288facb1107b491;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

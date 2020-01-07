@@ -8,7 +8,7 @@ yarn.lock
 
 # build output
 dist
-.next
+/.next
 
 # testing
 /coverage
