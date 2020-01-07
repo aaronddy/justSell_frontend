@@ -153,18 +153,26 @@ index.Layout = _components_layouts_Layout__WEBPACK_IMPORTED_MODULE_1__["default"
 const Div = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "pages__Div",
   componentId: "tpiy18-0"
-})(["color:blue;"]);
+})(["color:blue;width:200px;height:200px;background-image:url(\"/assets/justsell.png\");background-size:cover;"]);
 function index() {
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("img", {
+    src: "/assets/justsell.png",
+    alt: "my image",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 16
+    },
+    __self: this
+  }), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
     },
     __self: this
   }, "index.js"), __jsx(Div, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 18
     },
     __self: this
   }, "index.js"));
