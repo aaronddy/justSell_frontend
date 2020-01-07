@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"],{
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fkhn%2FKHN%2Fdevelop%2Fwecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js!./":
-/*!*************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fkhn%2FKHN%2Fdevelop%2Fwecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js ***!
-  \*************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fhome%2Fkang%2Fproject_wecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js!./":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fhome%2Fkang%2Fproject_wecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js ***!
+  \*****************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -45,7 +45,7 @@ module.exports = (__webpack_require__(/*! dll-reference dll_5f137288facb1107b491
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/khn/KHN/develop/wecode/justSell_frontend/src/components/layouts/Layout.js";
+var _jsxFileName = "/home/kang/project_wecode/justSell_frontend/src/components/layouts/Layout.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
@@ -77,7 +77,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_layouts_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/layouts/Layout */ "./src/components/layouts/Layout.js");
-var _jsxFileName = "/Users/khn/KHN/develop/wecode/justSell_frontend/src/pages/index.js";
+var _jsxFileName = "/home/kang/project_wecode/justSell_frontend/src/pages/index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -94,14 +94,14 @@ function index() {
 
 /***/ }),
 
-/***/ 1:
-/*!*****************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fkhn%2FKHN%2Fdevelop%2Fwecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js ***!
-  \*****************************************************************************************************************************************************/
+/***/ 0:
+/*!*********************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fkang%2Fproject_wecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js ***!
+  \*********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fkhn%2FKHN%2Fdevelop%2Fwecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fkhn%2FKHN%2Fdevelop%2Fwecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fkang%2Fproject_wecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fhome%2Fkang%2Fproject_wecode%2FjustSell_frontend%2Fsrc%2Fpages%2Findex.js!./");
 
 
 /***/ }),
@@ -117,5 +117,5 @@ module.exports = dll_5f137288facb1107b491;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

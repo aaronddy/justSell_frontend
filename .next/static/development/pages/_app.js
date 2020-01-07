@@ -3681,7 +3681,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _styles_reset__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/reset */ "./src/styles/reset.js");
 
-var _jsxFileName = "/Users/khn/KHN/develop/wecode/justSell_frontend/src/pages/_app.js";
+var _jsxFileName = "/home/kang/project_wecode/justSell_frontend/src/pages/_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
