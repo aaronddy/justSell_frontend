@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var globalStyles = \"\\n* {\\n  color:red;\\n}\\n\";","map":{"version":3,"sources":["/Users/khn/KHN/develop/wecode/justSell_frontend/src/styles/reset.js"],"names":["globalStyles"],"mappings":"AAAA,OAAO,IAAMA,YAAY,6BAAlB","sourcesContent":["export const globalStyles = `\n* {\n  color:red;\n}\n`;\n"]},"metadata":{},"sourceType":"module"}
