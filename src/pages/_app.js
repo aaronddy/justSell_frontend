@@ -9,6 +9,7 @@ export default function JustSell({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <meta charset="utf-8" />
         <style type="text/css">{globalStyles}</style>
         <title>JustSell</title>
       </Head>
