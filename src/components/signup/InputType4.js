@@ -11,40 +11,38 @@ export default function InputType4({
   infoDispatch
 }) {
   return (
-    <>
-      <Wrapper>
-        <Name>{name}</Name>
-        <Area>
-          <Input
-            type={type}
-            name={inputName}
-            value={state}
-            onChange={e => {
-              infoDispatch({ action: e.target });
-            }}
-          />
-          <Span>@</Span>
-          {/* <SelectWrapper> */}
-          <Select
-            name={inputName2}
-            value={state2}
-            onChange={e => {
-              infoDispatch({ action: e.target });
-            }}
-          >
-            <option defaultValue="DEFAULT">이메일을 선택</option>
-            <option value="gmail.com">gmail.com</option>
-            <option value="naver.com">naver.com</option>
-            <option value="hanmail.net">hanmail.net</option>
-            <option value="daum.net">daum.net</option>
-            <option value="nate.com">nate.com</option>
-            <option value="hotmail.com">hotmail.com</option>
-            <option value="icloud.com">icloud.com</option>
-          </Select>
-          {/* </SelectWrapper> */}
-        </Area>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Name>{name}</Name>
+      <Area>
+        <Input
+          type={type}
+          name={inputName}
+          value={state}
+          onChange={e => {
+            infoDispatch({ action: e.target });
+          }}
+        />
+        <Span>@</Span>
+        {/* <SelectWrapper> */}
+        <Select
+          name={inputName2}
+          value={state2}
+          onChange={e => {
+            infoDispatch({ action: e.target });
+          }}
+        >
+          <option defaultValue="DEFAULT">이메일을 선택</option>
+          <option value="gmail.com">gmail.com</option>
+          <option value="naver.com">naver.com</option>
+          <option value="hanmail.net">hanmail.net</option>
+          <option value="daum.net">daum.net</option>
+          <option value="nate.com">nate.com</option>
+          <option value="hotmail.com">hotmail.com</option>
+          <option value="icloud.com">icloud.com</option>
+        </Select>
+        {/* </SelectWrapper> */}
+      </Area>
+    </Wrapper>
   );
 }
 

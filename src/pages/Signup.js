@@ -10,7 +10,7 @@ export default function Signup() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [infoState, infoDispatch] = useReducer(infoReducer, infoInitialState);
 
-  const [stepStatus, setStepStatus] = useState(1);
+  const [stepStatus, setStepStatus] = useState(0);
   const handleStep = next => {
     if (next === 1) checkSignAgreement(next);
     else if (next === 2) checkSingInfoCondition(next);
@@ -30,10 +30,11 @@ export default function Signup() {
       state.corpnum3 !== ""
     ) {
       setStepStatus(next);
-    } else alert("입력을 완료해주세요");
+    } else setStepStatus(next);
+    // } else alert("입력을 완료해주세요");
   };
   const checkSingInfoCondition = next => {
-    console.log("infoState: ", infoState);
+    setStepStatus(next);
   };
   const step = {
     0: <Agreement handleStep={handleStep} state={state} dispatch={dispatch} />,

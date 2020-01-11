@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 
-export default function ServiceAgree1({ check1, check2, dispatch }) {
+export default function ServiceAgree({ check1, check2, dispatch }) {
   return (
     <>
       {/* <!--약관_1--> */}

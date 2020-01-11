@@ -1,13 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-
+let imageSrc = "";
 export default function SignUpHeader({ stepStatus }) {
-  let imageSrc = "";
-  if (stepStatus == 0) imageSrc = "/assets/images/member/sign_in_top_steps.png";
-  if (stepStatus == 1)
-    imageSrc = "/assets/images/member/sign_in_top_steps_2.png";
-  if (stepStatus == 2)
-    imageSrc = "/assets/images/member/sign_in_top_steps_3.png";
+  switch (stepStatus) {
+    case 0:
+      imageSrc = "/assets/images/member/sign_in_top_steps.png";
+      break;
+    case 1:
+      imageSrc = "/assets/images/member/sign_in_top_steps_2.png";
+      break;
+    case 2:
+      imageSrc = "/assets/images/member/sign_in_top_steps_3.png";
+    default:
+      break;
+  }
   return (
     <>
       <HeaderWrapper>
@@ -19,11 +25,6 @@ export default function SignUpHeader({ stepStatus }) {
       <SignUpStepWrap>
         <p>
           <StepImage src={imageSrc} alt="step" />
-          {/* <img
-                class="sign_in_step_m"
-                src="/assets/images/member/sign_in_top_steps_m.png"
-                alt="step"
-              /> */}
         </p>
       </SignUpStepWrap>
     </>
