@@ -1,7 +1,78 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const InputWrapper = styled.div`
+const LoginInputs = () => {
+  const [userId, setUserId] = useState("");
+  const [userPw, setUserPw] = useState("");
+
+  const idValue = e => {
+    setUserId(e.target.value);
+    console.log(e.target.value);
+  };
+  const pwValue = e => {
+    setUserPw(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const onSubmit = e => {
+    console.log("Id: ", userId, "pw: ", userPw);
+    fetch("http://3.134.114.32:8080/user/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user_email: userId,
+        password: userPw
+      })
+    })
+      .then(response => response.json())
+      .then(response => {
+        localStorage.setItem("access_token", response.access_token);
+      });
+    setUserId("");
+    setUserPw("");
+    e.preventDefault();
+  };
+
+  return (
+    <InputWrapper onSubmit={onSubmit}>
+      <IdInput
+        type="email"
+        value={userId}
+        onChange={idValue}
+        placeholder="아이디를 입력하세요."
+      ></IdInput>
+      <PwInput
+        type="password"
+        value={userPw}
+        onChange={pwValue}
+        placeholder="비밀번호를 입력하세요."
+      ></PwInput>
+      <Div>
+        <Id>ID저장</Id>
+        <Find href="/">ID/비밀번호찾기</Find>
+      </Div>
+      <Link href="/admin">
+        <Button>로그인</Button>
+      </Link>
+      <InfoCotainer>
+        <Abox>
+          <LieBox>회원가입</LieBox>
+        </Abox>
+
+        <Abox>즐겨찾기</Abox>
+      </InfoCotainer>
+      <Pbox>
+        <Ptext>저스트셀 / support@equality.co.kr / T. 1522-1522</Ptext>
+      </Pbox>
+    </InputWrapper>
+  );
+};
+
+export default LoginInputs;
+
+const InputWrapper = styled.form`
   height: 160px;
   display: flex;
   flex-direction: column;
@@ -126,45 +197,3 @@ const Ptext = styled.p`
   color: #cccccc;
   font-weight: 700;
 `;
-
-const LoginInputs = () => {
-  const [userId, setUserId] = useState("");
-  const [userPw, setUserPw] = useState("");
-
-  const idValue = e => {
-    setUserId(e.target.value);
-    console.log(e.target.value);
-  };
-  const pwValue = e => {
-    setUserPw(e.target.value);
-    console.log(e.target.value);
-  };
-
-  return (
-    <InputWrapper>
-      <IdInput onChange={idValue} placeholder="아이디를 입력하세요."></IdInput>
-      <PwInput
-        type="password"
-        onChange={pwValue}
-        placeholder="비밀번호를 입력하세요."
-      ></PwInput>
-      <Div>
-        <Id>ID저장</Id>
-        <Find href="/">ID/비밀번호찾기</Find>
-      </Div>
-      <Button>로그인</Button>
-      <InfoCotainer>
-        <Abox>
-          <LieBox>회원가입</LieBox>
-        </Abox>
-
-        <Abox>즐겨찾기</Abox>
-      </InfoCotainer>
-      <Pbox>
-        <Ptext>저스트셀 / support@equality.co.kr / T. 1522-1522</Ptext>
-      </Pbox>
-    </InputWrapper>
-  );
-};
-
-export default LoginInputs;
