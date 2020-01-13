@@ -1,25 +1,46 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
+
+const removeToken = () => {
+  window.localStorage.clear();
+};
 
 const SubNav = ({ children }) => {
   return (
     <>
       <NavContainer>
         <NavDiv>
-          <Login href="/home">로그인</Login>
-          <Signup>회원가입</Signup>
+          <Link href="/">
+            <Login onClick={removeToken}>로그아웃</Login>
+          </Link>
+          <Link href="/signup">
+            <Signup>회원가입</Signup>
+          </Link>
         </NavDiv>
       </NavContainer>
       <MenuNav>
         <ImgDiv>
-          <Image></Image>
+          <Link href="/">
+            <Image></Image>
+          </Link>
         </ImgDiv>
         <MenuContainer>
-          <Menu>주문 현황</Menu>
-          <Menu>투자 리포트</Menu>
-          <Menu>충전금 내역</Menu>
-          <Menu>상품 등록</Menu>
-          <Menu>상품 관리</Menu>
+          <Link href="/orderlist">
+            <Menu>주문 현황</Menu>
+          </Link>
+          <Link href="/report">
+            <Menu>투자 리포트</Menu>
+          </Link>
+          <Link href="/">
+            <Menu>충전금 내역</Menu>
+          </Link>
+          <Link href="/ProductRegistration">
+            <Menu>상품 등록</Menu>
+          </Link>
+          <Link href="/">
+            <Menu>상품 관리</Menu>
+          </Link>
         </MenuContainer>
       </MenuNav>
     </>
@@ -57,21 +78,27 @@ const MenuNav = styled.div`
   position: fixed;
   left: 0;
 `;
-const Login = styled.a`
+const Login = styled.button`
   text-decoration: none;
   color: white;
   font-weight: 700;
   letter-spacing: -1px;
   cursor: pointer;
   z-index: 200;
+  border: none;
+  font-size: 17px;
+  background: none;
 `;
-const Signup = styled.a`
+const Signup = styled.button`
   text-decoration: none;
   color: white;
   font-weight: 700;
   letter-spacing: -1px;
   margin-left: 25px;
   cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 17px;
 `;
 const ImgDiv = styled.div`
   width: 379px;
@@ -106,7 +133,7 @@ const MenuContainer = styled.div`
   top: 200px;
   letter-spacing: -2px;
 `;
-const Menu = styled.a`
+const Menu = styled.div`
   color: #fff;
   text-decoration: none;
   font-size: 19px;
