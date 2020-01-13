@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import LoginInputs from "../../components/LoginInput/LoginInputs";
+import LoginInputs from "../components/LoginInput/LoginInputs";
+import Link from "next/link";
 
 const Login = () => {
   return (
     <Div>
       <LoginBox>
         <ImageWrapperDiv>
-          <LogoImage></LogoImage>
+          <Link href="/">
+            <LogoImage />
+          </Link>
           <LoginTitle>저스트셀에 오신 걸 환영합니다</LoginTitle>
         </ImageWrapperDiv>
         <LoginInputs />
@@ -47,7 +50,7 @@ const LogoImage = styled.div`
   height: 60px;
   width: 150px;
   background-image: url("/assets/images/ui/color_logo.png");
-
+  cursor: pointer;
   background-repeat: no-repeat;
   background-size: 150px 46px;
 `;
