@@ -5,10 +5,101 @@ import RegistrationBox from "../components/ProductRegistration/RegistrationBox";
 import BasicInfoInputBox from "../components/ProductRegistration/BasicInfoInputBox";
 import SalesInfoBox from "../components/ProductRegistration/SalesInfoBox";
 import ImageInfoInputBox from "../components/ProductRegistration/ImageInfoInputBox";
-import DeliverInputBox from "../components/ProductRegistration/DeliverInputBox";
+import DeliveryInputBox from "../components/ProductRegistration/DeliveryInputBox";
+import ExtraInfoInputBox from "../components/ProductRegistration/ExtraInfoInputBox";
 ProductRegistration.Layout = Layout;
 
 export default function ProductRegistration() {
+  const [basicInfoData, setBasicInfoData] = useState({
+    category: "",
+    product_name: "",
+    brand: ""
+  });
+  const [salesInfoData, setSalesInfoData] = useState({
+    product_tax: true,
+    supply_price: null,
+    sale_price: null,
+    stock_amount: null,
+    minimum_buying: null,
+    vendorcode: ""
+  });
+  //상품상세설명(에디터 작성만되도록 작업)
+  const [detail_image, setDetail_image] = useState("");
+  const [deliveryInfoData, setDeliveryInfoData] = useState({
+    delivery_company: "",
+    delivery_fee: "",
+    return_delivery_fee: "",
+    start_delivery_address_RJ: "",
+    start_delivery_address: "",
+    start_delivery_address_sigungucode: "",
+    start_delivery_address_extraddress: "",
+    return_delivery_address_RJ: "",
+    return_delivery_address: "",
+    return_delivery_address_sigungucode: "",
+    return_delivery_address_extraddress: ""
+  });
+
+  const [extraInfoData, setExtraInfoData] = useState({
+    search_keyword: "",
+    adult_restricted: false
+  });
+  const basicInfoDataHandler = e => {
+    const { name, value } = e.target;
+    setBasicInfoData({ ...basicInfoData, [name]: value });
+  };
+  const salesInfoDataHandler = e => {
+    console.log("sales e", e);
+    const { name, value } = e.target;
+    console.log("sales name", name);
+    console.log("sales value", value);
+    setSalesInfoData({ ...salesInfoData, [name]: value });
+  };
+  //product_tax toggle
+  const salesInfoToggleDataHandler = value => () => {
+    setSalesInfoData({ ...salesInfoData, product_tax: value });
+  };
+  const deliveryInfoDataHandler = e => {
+    const { name, value } = e.target;
+    setDeliveryInfoData({ ...deliveryInfoData, [name]: value });
+  };
+  const startDeliveryHandler = data => {
+    if (data.userSelectedType === "R") {
+      setDeliveryInfoData(prevState => ({
+        ...prevState,
+        ["start_delivery_address_RJ"]: "[도로명]",
+        ["start_delivery_address"]: data.address,
+        ["start_delivery_address_sigungucode"]: data.sigunguCode
+      }));
+    } else if (data.userSelectedType === "J") {
+      setDeliveryInfoData(prevState => ({
+        ...prevState,
+        ["start_delivery_address_RJ"]: "[지번]",
+        ["start_delivery_address"]: data.address,
+        ["start_delivery_address_sigungucode"]: data.sigunguCode
+      }));
+    }
+  };
+  const returnDeliveryHandler = data => {
+    if (data.userSelectedType === "R") {
+      setDeliveryInfoData(prevState => ({
+        ...prevState,
+        ["return_delivery_address_RJ"]: "[도로명]",
+        ["return_delivery_address"]: data.address,
+        ["return_delivery_address_sigungucode"]: data.sigunguCode
+      }));
+    } else if (data.userSelectedType === "J") {
+      setDeliveryInfoData(prevState => ({
+        ...prevState,
+        ["return_delivery_address_RJ"]: "[지번]",
+        ["return_delivery_address"]: data.address,
+        ["return_delivery_address_sigungucode"]: data.sigunguCode
+      }));
+    }
+  };
+  const extraInfoDataHandler = e => {
+    const { name, value } = e.target;
+    setExtraInfoData(prevState => ({ ...prevState, [name]: value }));
+  };
   return (
     <Wrapper>
       <H2Wrapper>
@@ -18,19 +109,46 @@ export default function ProductRegistration() {
           status="상품명(입력안함) / 판매유형(일반) / 상품유형(새상품) / 브랜드(없음) / 제조사(없음) /
           담당MD(선택안함) / 노출여부(노출)"
         >
-          <BasicInfoInputBox />
+          <BasicInfoInputBox
+            basicInfoData={basicInfoData}
+            basicInfoDataHandler={basicInfoDataHandler}
+          />
         </RegistrationBox>
         <RegistrationBox
           name="판매정보"
           status=" 판매가격(입력안함) / 과세 / 판매기간(2020-01-12 ~ 2037-12-31) / 재고수량(입력안함)"
         >
-          <SalesInfoBox />
+          <SalesInfoBox
+            salesInfoData={salesInfoData}
+            salesInfoDataHandler={salesInfoDataHandler}
+            salesInfoToggleDataHandler={salesInfoToggleDataHandler}
+          />
         </RegistrationBox>
         <RegistrationBox name="이미지 정보">
-          <ImageInfoInputBox />
+          <ImageInfoInputBox
+            detail_image={detail_image}
+            setDetail_image={setDetail_image}
+          />
         </RegistrationBox>
-        <RegistrationBox name="배송 정보">
-          <DeliverInputBox />
+        <RegistrationBox
+          name="배송 정보"
+          status="일반-택배배송 / 상품별배송 / 조건부 무료(2,500 (1,000,000원 이상 구매시 무료)) /반품/교환 배송비(편도),3000원"
+        >
+          <DeliveryInputBox
+            deliveryInfoData={deliveryInfoData}
+            startDeliveryHandler={startDeliveryHandler}
+            returnDeliveryHandler={returnDeliveryHandler}
+            deliveryInfoDataHandler={deliveryInfoDataHandler}
+          />
+        </RegistrationBox>
+        <RegistrationBox
+          name="부가 정보"
+          status="검색키워드(입력안함) 19금(제한안함)"
+        >
+          <ExtraInfoInputBox
+            extraInfoData={extraInfoData}
+            extraInfoDataHandler={extraInfoDataHandler}
+          />
         </RegistrationBox>
       </H2Wrapper>
     </Wrapper>
@@ -38,7 +156,6 @@ export default function ProductRegistration() {
 }
 
 const Wrapper = styled.section`
-  border: 1px solid greenyellow;
   padding: 32px 0;
 `;
 

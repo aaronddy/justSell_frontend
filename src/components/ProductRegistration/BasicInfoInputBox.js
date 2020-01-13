@@ -1,6 +1,10 @@
 import React from "react";
 import styled, { css } from "styled-components";
-export default function BasicInfoInputBox() {
+export default function BasicInfoInputBox({
+  basicInfoData,
+  basicInfoDataHandler
+}) {
+  const { category, product_name, brand } = basicInfoData;
   return (
     <CheckAreaWrapper>
       {/* 카테고리 */}
@@ -16,7 +20,13 @@ export default function BasicInfoInputBox() {
       <InputWrap>
         <EventArea>
           <SearchWrap title={false}>
-            <SearchInput type="text" placeholder="키워드로 검색 예)운동화" />
+            <SearchInput
+              type="text"
+              name="category"
+              placeholder="키워드로 검색 예)운동화"
+              value={category}
+              onChange={basicInfoDataHandler}
+            />
             <SearchIcon
               src="/assets/images/ui/ico_search.png"
               alt="searchIcon"
@@ -33,6 +43,8 @@ export default function BasicInfoInputBox() {
           <ProductNameInput
             type="text"
             placeholder="판매할 상품에 적합한 상품명을 입력해주세요. 최대(70자)"
+            value={product_name}
+            onChange={basicInfoDataHandler}
           />
           <ProductLength>
             <Length>0</Length>/70자
@@ -46,7 +58,12 @@ export default function BasicInfoInputBox() {
         </Title>
         <EventArea>
           <SearchWrap title={true}>
-            <BrandSearch type="text" placeholder="브랜드명을 검색하세요" />
+            <BrandSearch
+              type="text"
+              placeholder="브랜드명을 검색하세요"
+              value={brand}
+              onChange={basicInfoDataHandler}
+            />
             <SearchIcon
               src="/assets/images/ui/ico_search.png"
               alt="searchIcon"
