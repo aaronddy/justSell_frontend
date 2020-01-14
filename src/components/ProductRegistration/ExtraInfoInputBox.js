@@ -1,59 +1,43 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import DaumPostcode from "react-daum-postcode";
-
-export default function BasicInfoInputBox() {
-  const handleAddress = data => {
-    let fullAddress = data.address;
-    let extraAddress = "";
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
-    }
-
-    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-  };
+export default function ExtraInfoInputBox({
+  extraInfoData,
+  extraInfoDataHandler
+}) {
+  const { search_keyword, adult_restricted } = extraInfoData;
   return (
     <CheckAreaWrapper>
-      {/* 카테고리 */}
+      {/* 검색키워드로 검색 */}
       <InputWrap>
         <Title>
-          <h3>택배사</h3>
+          <h3>
+            검색키워드
+            <br />
+            (제휴채널)
+          </h3>
         </Title>
         <EventArea>
           <SearchWrap>
-            <SearchInput type="text" placeholder="택배사 조회" />
-            <SearchIcon
-              src="/assets/images/ui/ico_search.png"
-              alt="searchIcon"
+            <SearchInput
+              type="text"
+              placeholder="키워드로 검색 예)운동화"
+              name="search_keyword"
+              value={search_keyword}
+              onChange={extraInfoDataHandler}
             />
+            <CategorySearchButton>추가</CategorySearchButton>
           </SearchWrap>
         </EventArea>
       </InputWrap>
-      {/* 상품명 */}
       <InputWrap>
         <Title>
-          <h3>배송비</h3>
+          <h3>19금제한</h3>
         </Title>
         <EventArea>
-          <DeliverPrice>2500원</DeliverPrice>
+          <AdultButton clicked={true}>제한</AdultButton>
+          <AdultButton clicked={false}>제한안함</AdultButton>
         </EventArea>
       </InputWrap>
-      <InputWrap>
-        <Title>
-          <h3>출고지</h3>
-        </Title>
-        <EventArea>
-          <DaumPostcode onComplete={handleAddress} width="400" />
-        </EventArea>
-      </InputWrap>
-      {/* 브랜드 */}
     </CheckAreaWrapper>
   );
 }
@@ -81,12 +65,14 @@ const InputWrap = styled.div`
   margin-top: 12px;
 `;
 const CategorySearchButton = styled.button`
-  background-color: #0891e4;
-  border: 1px solid #0d99de;
-  color: white;
-  padding: 15px 24px;
   border-radius: 4px;
+  border: 1px solid #0d99de;
+  color: #0d99de;
+  padding: 17px 24px;
+  border-radius: 4px;
+  margin-left: 12px;
   font-size: 14px;
+  background-color: white;
 `;
 const SearchWrap = styled.div`
   position: relative;
@@ -153,8 +139,18 @@ const BrandExistCheck = styled.span`
     background-position: -20px 0;
   }
 `;
-
-const DeliverPrice = styled.div`
-  margin: auto 0;
-  color: #0d99de;
+const AdultButton = styled.button`
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  color: #212121;
+  padding: 12px 28px;
+  font-size: 14px;
+  ${props =>
+    !props.clicked &&
+    css`
+      background-color: #ddd;
+      border: 1px solid #ddd;
+      color: #212121;
+      margin-left: 0px;
+    `}
 `;

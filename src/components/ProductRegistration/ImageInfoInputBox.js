@@ -2,9 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Editor } from "@tinymce/tinymce-react";
 
-export default function ImageInfoInputBox() {
+export default function ImageInfoInputBox({ detail_image, setDetail_image }) {
   const handleEditorChange = e => {
     console.log("Content was updated:", e.target.getContent());
+    setDetail_image(e.target.getContent());
   };
   return (
     <CheckAreaWrapper>

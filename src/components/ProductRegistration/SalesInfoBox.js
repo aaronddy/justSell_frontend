@@ -1,6 +1,18 @@
 import React from "react";
 import styled, { css } from "styled-components";
-export default function SalesInfoBox() {
+export default function SalesInfoBox({
+  salesInfoData,
+  salesInfoDataHandler,
+  salesInfoToggleDataHandler
+}) {
+  const {
+    product_tax,
+    supply_price,
+    sale_price,
+    stock_amount,
+    minimum_buying,
+    vendorcode
+  } = salesInfoData;
   return (
     <CheckAreaWrapper>
       {/* 과세여부 */}
@@ -9,8 +21,18 @@ export default function SalesInfoBox() {
           <h3>과세여부</h3>
         </Title>
         <EventArea>
-          <CategorySearchButton clicked={true}>과세</CategorySearchButton>
-          <CategorySearchButton clicked={false}>면세</CategorySearchButton>
+          <CategorySearchButton
+            onClick={salesInfoToggleDataHandler(!product_tax)}
+            clicked={product_tax}
+          >
+            과세
+          </CategorySearchButton>
+          <CategorySearchButton
+            onClick={salesInfoToggleDataHandler(!product_tax)}
+            clicked={!product_tax}
+          >
+            면세
+          </CategorySearchButton>
         </EventArea>
       </InputWrap>
       {/* 정상가격 */}
@@ -19,7 +41,13 @@ export default function SalesInfoBox() {
           <h3>정상가격</h3>
         </Title>
         <EventArea>
-          <ProductNameInput type="number" placeholder="최대 999,999,999" />
+          <ProductNameInput
+            type="number"
+            placeholder="최대 999,999,999"
+            name="supply_price"
+            value={supply_price}
+            onChange={salesInfoDataHandler}
+          />
           <Won>원</Won>
         </EventArea>
       </InputWrap>
@@ -29,7 +57,13 @@ export default function SalesInfoBox() {
           <h3>판매가격</h3>
         </Title>
         <EventArea>
-          <ProductNameInput type="number" placeholder="최대 999,999,999" />
+          <ProductNameInput
+            type="number"
+            placeholder="최대 999,999,999"
+            name="sale_price"
+            value={sale_price}
+            onChange={salesInfoDataHandler}
+          />
           <Won>원</Won>
         </EventArea>
       </InputWrap>
@@ -46,7 +80,13 @@ export default function SalesInfoBox() {
           <h3>재고수량</h3>
         </Title>
         <EventArea>
-          <ProductNameInput type="number" placeholder="최대 99,999" />
+          <ProductNameInput
+            type="number"
+            placeholder="최대 99,999"
+            name="stock_amount"
+            value={stock_amount}
+            onChange={salesInfoDataHandler}
+          />
           <Won>개</Won>
         </EventArea>
       </InputWrap>
@@ -55,7 +95,13 @@ export default function SalesInfoBox() {
           <h3>최소구매수량</h3>
         </Title>
         <EventArea>
-          <ProductNameInput type="number" placeholder="1~999" />
+          <ProductNameInput
+            type="number"
+            placeholder="1~999"
+            name="minimum_buying"
+            value={minimum_buying}
+            onChange={salesInfoDataHandler}
+          />
           <Won>개부터 구매가능</Won>
         </EventArea>
       </InputWrap>
@@ -65,7 +111,13 @@ export default function SalesInfoBox() {
           <h3>업체상품코드</h3>
         </Title>
         <EventArea>
-          <ProductNameInput type="text" placeholder="" />
+          <ProductNameInput
+            type="text"
+            placeholder=""
+            name="vendorcode"
+            value={vendorcode}
+            onChange={salesInfoDataHandler}
+          />
         </EventArea>
       </InputWrap>
     </CheckAreaWrapper>
