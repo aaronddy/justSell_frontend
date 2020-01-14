@@ -1,9 +1,16 @@
-import React, { useMemo } from "react";
-import styled from "styled-components";
+import React, { useState, useMemo } from "react";
+import styled, { css } from "styled-components";
 import InputType1 from "../../components/signup/InputType1";
 import InputType2 from "../../components/signup/InputType2";
 import InputType3 from "../../components/signup/InputType3";
-export default function SignUpCheck({ state, dispatch }) {
+export default function SignUpCheck({
+  state,
+  dispatch,
+  corpNumGroupState,
+  corpNumGroupDispatch,
+  getInvitationCodeAuthed
+}) {
+  const [isInvitationCodeAuthed, setisInvitationCodeAuthed] = useState(false);
   return (
     <>
       {/* 가입 여부 확인 */}
@@ -18,14 +25,20 @@ export default function SignUpCheck({ state, dispatch }) {
           state={state.signcode}
           inputName={"signcode"}
           dispatch={dispatch}
+          getInvitationCodeAuthed={getInvitationCodeAuthed}
+          setisInvitationCodeAuthed={setisInvitationCodeAuthed}
         />
-        {/*  */}
-        <CodeMore>
-          가입상담이 완료되신 분만 회원가입이 가능합니다.
-          <SingInCodeAreaMoreLink href="/">
-            가입상담 바로가기
-          </SingInCodeAreaMoreLink>
-        </CodeMore>
+        {!isInvitationCodeAuthed ? (
+          <CodeMore>
+            가입상담이 완료되신 분만 회원가입이 가능합니다.
+            <SingInCodeAreaMoreLink href="/">
+              가입상담 바로가기
+            </SingInCodeAreaMoreLink>
+          </CodeMore>
+        ) : (
+          <CodeMore auth={true}>가입코드가 인증되었습니다.</CodeMore>
+        )}
+
         {/*  */}
         <InputType2
           name="상호 / 법인명"
@@ -39,11 +52,11 @@ export default function SignUpCheck({ state, dispatch }) {
         <InputType3
           name="사업자등록번호"
           type="text"
-          state={state}
+          corpNumGroupState={corpNumGroupState}
           inputNum1={"corpnum1"}
           inputNum2={"corpnum2"}
           inputNum3={"corpnum3"}
-          dispatch={dispatch}
+          corpNumGroupDispatch={corpNumGroupDispatch}
         />
       </CheckAreaWrapper>
     </>
@@ -66,6 +79,12 @@ const CodeMore = styled.p`
   margin-top: 6px;
   font-size: 11px;
   padding-right: 54px;
+  ${props =>
+    props.auth &&
+    css`
+      color: #01c75a;
+      padding-right: 260px;
+    `}
 `;
 const SingInCodeAreaMoreLink = styled.a`
   font-size: 11px;

@@ -4,11 +4,11 @@ import styled from "styled-components";
 export default function InputType4({
   name,
   type,
-  state,
+  state1,
   state2,
-  inputName,
+  inputName1,
   inputName2,
-  infoDispatch
+  managerEmailGroupDispatch
 }) {
   return (
     <Wrapper>
@@ -16,10 +16,10 @@ export default function InputType4({
       <Area>
         <Input
           type={type}
-          name={inputName}
-          value={state}
+          name={inputName1}
+          value={state1}
           onChange={e => {
-            infoDispatch({ action: e.target });
+            managerEmailGroupDispatch(e.target);
           }}
         />
         <Span>@</Span>
@@ -28,7 +28,7 @@ export default function InputType4({
           name={inputName2}
           value={state2}
           onChange={e => {
-            infoDispatch({ action: e.target });
+            managerEmailGroupDispatch(e.target);
           }}
         >
           <option defaultValue="DEFAULT">이메일을 선택</option>
@@ -66,6 +66,7 @@ const Input = styled.input`
   border: 1px solid #b3b3b3;
   vertical-align: middle;
   border-radius: 2px;
+  background-color: #fefefe;
 `;
 const Span = styled.span`
   padding: 0 7.5px;

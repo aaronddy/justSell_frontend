@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
+import axios from "axios";
 let fileInput = "";
 let companyName = "";
 export default function InputType1({
@@ -8,20 +9,56 @@ export default function InputType1({
   btnName,
   state,
   inputName,
-  dispatch
+  dispatch,
+  getInvitationCodeAuthed,
+  setisInvitationCodeAuthed
 }) {
   const [file, setFile] = useState("");
   //공통 Input
+
   const setImage = e => {
+    const data = new FormData();
+    data.append("filename", e.target.files[0], e.target.files[0].name);
+    axios
+      .post("http://18.222.155.204:8080/product/imageupload", data, {
+        onUploadProgress: ProgressEvent => {
+          console.log(
+            "Upload Progress: ",
+            +Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
+              "%"
+          );
+        }
+      })
+      // .post("http://3.133.82.146:8080/product/imageupload", { data:data })
+      .then(res => {
+        console.log("then res", res);
+      })
+      .catch(res => {
+        console.log("error :", res);
+      });
     setFile(e.target.files[0]);
   };
+  const sendSignCodeToServer = () => {
+    axios
+      .post("http://3.15.9.70:8080/user/invitationcode", {
+        invitation_code: state
+      })
+      .then(res => {
+        res.data.message === "SUCCESS" &&
+          (setisInvitationCodeAuthed(true), getInvitationCodeAuthed(true));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   let inputVar = (
     <Input
       type={type}
       value={state}
       name={inputName}
       onChange={e => {
-        dispatch({ action: e.target });
+        dispatch(e.target);
       }}
     />
   );
@@ -29,7 +66,7 @@ export default function InputType1({
     fileInput = (
       <Event>
         {inputVar}
-        <Button>{btnName}</Button>
+        <Button onClick={sendSignCodeToServer}>{btnName}</Button>
       </Event>
     );
   if (btnName === "중복확인")
@@ -80,6 +117,7 @@ const Event = styled.div`
 `;
 const Input = styled.input`
   display: none;
+  background-color: #fefefe;
   ${props =>
     props.type === "text" &&
     css`
@@ -88,10 +126,12 @@ const Input = styled.input`
       padding: 12px 4px;
       border: 1px solid #b3b3b3;
       border-radius: 2px;
+      background-color: #fefefe;
     `}
 `;
 const Label = styled.label`
   width: 100%;
+  background-color: #fefefe;
   display: flex;
   justify-content: space-between;
 `;

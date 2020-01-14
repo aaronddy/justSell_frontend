@@ -7,7 +7,8 @@ export default function InputType3({
   inputNum1,
   inputNum2,
   inputNum3,
-  dispatch
+  corpNumGroupState,
+  corpNumGroupDispatch
 }) {
   return (
     <Wrapper>
@@ -15,30 +16,28 @@ export default function InputType3({
       <Area>
         <Input
           type={type}
-          value={state.corpnum1}
+          value={corpNumGroupState.corpnum1}
           name={inputNum1}
           onChange={e => {
-            console.log("state: ", state.corpnum1);
-            console.log("inputNum1 ", inputNum1);
-            dispatch({ action: e.target });
+            corpNumGroupDispatch(e.target);
           }}
         />
         <Span>-</Span>
         <Input
           type={type}
-          value={state.corpnum2}
+          value={corpNumGroupState.corpnum2}
           name={inputNum2}
           onChange={e => {
-            dispatch({ action: e.target });
+            corpNumGroupDispatch(e.target);
           }}
         />
         <Span>-</Span>
         <Input
           type={type}
-          value={state.corpnum3}
+          value={corpNumGroupState.corpnum3}
           name={inputNum3}
           onChange={e => {
-            dispatch({ action: e.target });
+            corpNumGroupDispatch(e.target);
           }}
         />
       </Area>
@@ -66,6 +65,7 @@ const Input = styled.input`
   border: 1px solid #b3b3b3;
   vertical-align: middle;
   border-radius: 2px;
+  background-color: #fefefe;
 `;
 const Span = styled.span`
   padding: 0 7.5px;

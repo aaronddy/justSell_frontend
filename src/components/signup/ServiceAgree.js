@@ -54,7 +54,7 @@ export default function ServiceAgree({ check1, check2, dispatch }) {
             name="check1"
             checked={check1}
             onChange={e => {
-              dispatch({ action: e.target });
+              dispatch(e.target);
             }}
           />
           <AgreeInputAreaLabel></AgreeInputAreaLabel>
@@ -111,7 +111,7 @@ export default function ServiceAgree({ check1, check2, dispatch }) {
             name="check2"
             checked={check2}
             onChange={e => {
-              dispatch({ action: e.target });
+              dispatch(e.target);
             }}
           />
           <AgreeInputAreaLabel></AgreeInputAreaLabel>
