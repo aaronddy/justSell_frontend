@@ -19,7 +19,7 @@ export default class Intro extends Component {
                     alt="mainLogo"
                   />
                 </a>
-                <Link href="/login/Login">
+                <Link href="/login">
                   <HeaderBtn>
                     <HeaderBtnH1>JustSell 이용하기</HeaderBtnH1>
                   </HeaderBtn>

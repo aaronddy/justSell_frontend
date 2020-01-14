@@ -1,37 +1,147 @@
-import React from "react";
-import styled from "styled-components";
+import React, { Component } from "react";
+import styled, { css } from "styled-components";
 
-export default function Sec_3_contents() {
-  return (
-    <SelectBox>
-      <UlBox>
-        <Btn>
-          <BtnTitle>Keyword Optimization</BtnTitle>
-        </Btn>
-        <Btn2>
-          <BtnTitle>Sales Forcasting</BtnTitle>
-        </Btn2>
-        <Btn3>
-          <BtnTitle>Image Retrival</BtnTitle>
-        </Btn3>
-      </UlBox>
-      <div class="main_section_3_sel_box_contents">
-        <div class="main_section_3_sel_box_contents_titleArea">
-          <Title>Keyword Optimization</Title>
-          <Content>
-            1억건 이상의 자체 판매데이터와 실시간 트렌드에 대한
-            <br />
-            딥러닝 분석을 통해 최적의 상품 검색 키워드들을 도출합니다.
-          </Content>
-        </div>
-        <ContentArea>
-          <ImgWrap>
-            <Img1 src="./assets/images/main/main_box_img_1.png" alt="" />
-          </ImgWrap>
-        </ContentArea>
-      </div>
-    </SelectBox>
-  );
+export default class Sec_3_contents extends Component {
+  state = {
+    active: null
+  };
+
+  clickHandler = id => {
+    this.setState({ active: id });
+    console.log(this.state.active);
+    console.log(this.state.showUp);
+    console.log(id);
+  };
+
+  // state = {
+  //   contents: [
+  //     {
+  //       id: "1",
+  //       active: false,
+  //       title: "Keyword Optimization",
+  //       content:
+  //         "1억건 이상의 자체 판매데이터와 실시간 트렌드에 대한 \n딥러닝 분석을 통해 최적의 상품 검색 키워드들을 도출합니다.",
+  //       image: "./assets/images/main/main_box_img_1.png"
+  //     },
+  //     {
+  //       id: "2",
+  //       active: false,
+  //       title: "Sales Forcasting",
+  //       content:
+  //         "매일 3억개 이상의 데이터 수집 분석을 통해 \n'지금 이 순간' 구매매력도가 높을 상품들로 판매합니다.",
+  //       image: "./assets/images/main/main_box_img_2.png"
+  //     },
+  //     {
+  //       id: "3",
+  //       active: false,
+  //       title: "Image Retrival",
+  //       content:
+  //         "Feature Detection 기술을 활용하여 \n기존 상품 이미지들을 더욱 구매 매력적인 이미지들로 치환합니다.",
+  //       image: "./assets/images/main/main_box_img_3.png"
+  //     }
+  //   ]
+  // };
+  render() {
+    let tapContent;
+
+    if (this.state.active === 1) {
+      tapContent = (
+        <ContentBox>
+          <div>
+            <Title>Keyword Optimization</Title>
+            <Content>
+              1억건 이상의 자체 판매데이터와 실시간 트렌드에 대한
+              <br />
+              딥러닝 분석을 통해 최적의 상품 검색 키워드들을 도출합니다.
+            </Content>
+          </div>
+          <ContentArea>
+            <ImgWrap>
+              <Img1 src="./assets/images/main/main_box_img_1.png" alt="" />
+            </ImgWrap>
+          </ContentArea>
+        </ContentBox>
+      );
+    } else if (this.state.active === 2) {
+      tapContent = (
+        <ContentBox myId={this.state.active}>
+          <div>
+            <Title>Sales Forcasting</Title>
+            <Content>
+              매일 3억개 이상의 데이터 수집 분석을 통해
+              <br />
+              '지금 이 순간' 구매매력도가 높을 상품들로 판매합니다.
+            </Content>
+          </div>
+          <ContentArea>
+            <ImgWrap>
+              <Img1 src="./assets/images/main/main_box_img_2.png" alt="" />
+            </ImgWrap>
+          </ContentArea>
+        </ContentBox>
+      );
+    } else if (this.state.active === 3) {
+      tapContent = (
+        <ContentBox myId={this.state.active}>
+          <div>
+            <Title>Image Retrival</Title>
+            <Content>
+              Feature Detection 기술을 활용하여
+              <br />
+              기존 상품 이미지들을 더욱 구매 매력적인 이미지들로 치환합니다.
+            </Content>
+          </div>
+          <ContentArea>
+            <ImgWrap>
+              <Img1 src="./assets/images/main/main_box_img_3.png" alt="" />
+            </ImgWrap>
+          </ContentArea>
+        </ContentBox>
+      );
+    }
+    return (
+      <>
+        <SelectBox>
+          <UlBox>
+            <Btn
+              // myId={1}
+              // fontColor="#24aaaa"
+              // bgColor="#72d2c0"
+              onClick={e => {
+                this.clickHandler(1);
+              }}
+              isActive={this.state.active === 1}
+            >
+              <span>Keyword Optimization</span>
+            </Btn>
+            <Btn2
+              // myId={2}
+              // fontColor="#00768f"
+              // bgColor="#3bbbb4"
+              onClick={e => {
+                this.clickHandler(2);
+              }}
+              isActive={this.state.active === 2}
+            >
+              <span>Sales Forcasting</span>
+            </Btn2>
+            <Btn3
+              // myId={3}
+              // fontColor="#007add"
+              // bgColor="#3ba6e1"
+              onClick={e => {
+                this.clickHandler(3);
+              }}
+              isActive={this.state.active === 3}
+            >
+              <span>Image Retrival</span>
+            </Btn3>
+          </UlBox>
+          {tapContent}
+        </SelectBox>
+      </>
+    );
+  }
 }
 
 const SelectBox = styled.div`
@@ -86,25 +196,66 @@ const UlBox = styled.ul`
   position: absolute;
   top: -3rem;
 `;
+
 const Btn = styled.li`
   display: inline-block;
   width: 33.333%;
   text-align: center;
-  color: white;
   padding: 1.5rem 0;
   border-radius: 21px 21px 0 0;
   font-size: 1.75rem;
   cursor: pointer;
   list-style: none;
-  background-color: #3bbbb4;
+  background-color: #72d2c0;
+  ${props =>
+    props.isActive &&
+    css`
+      background-color: white;
+    `};
+  > span {
+    color: white;
+    ${props =>
+      props.isActive &&
+      css`
+        color: #24aaaa;
+      `}
+  }
 `;
 
 const Btn2 = styled(Btn)`
-  background-color: #00768f;
+  background-color: #3bbbb4;
+  ${props =>
+    props.isActive &&
+    css`
+      background-color: white;
+    `};
+  > span {
+    color: white;
+    ${props =>
+      props.isActive &&
+      css`
+        color: #00768f;
+      `}
+  }
 `;
+
 const Btn3 = styled(Btn)`
-  background-color: #007add;
+  background-color: #3ba6e1;
+  ${props =>
+    props.isActive &&
+    css`
+      background-color: white;
+    `};
+  > span {
+    color: white;
+    ${props =>
+      props.isActive &&
+      css`
+        color: #007add;
+      `}
+  }
 `;
-const BtnTitle = styled.span`
-  font-size: 1.75rem;
+
+const ContentBox = styled.div`
+  display: ${props => props.display};
 `;
