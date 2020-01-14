@@ -1,6 +1,8 @@
 {
   "options": {
+    "colors": ["#6DA6FF", "#9AC6C6", "#FCDD6B"],
     "chart": {
+      "width": "100%",
       "id": "basic-bar"
     },
     "xaxis": {

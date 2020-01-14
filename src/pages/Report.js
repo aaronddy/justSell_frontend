@@ -81,7 +81,6 @@ export default function Report(props) {
 }
 
 const Container = styled.div`
-  border: 2px solid orange;
   width: 100%;
   height: auto;
   padding-top: 64px;

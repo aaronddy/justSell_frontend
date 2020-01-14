@@ -39,7 +39,8 @@ const Container = styled.div`
   margin-bottom: 50px;
 `;
 const Box = styled.div`
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -49,16 +50,17 @@ const Box2 = styled.div`
   width: 250px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   /* border: 1px solid black; */
 `;
 const P = styled.p`
   width: 100%;
   color: #363d49;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 15px;
+  /* font-weight: 800; */
   letter-spacing: -2.5px;
+  margin-bottom: 5px;
   /* margin: 15px 0; */
 `;
 const Span = styled.span`
