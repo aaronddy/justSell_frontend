@@ -9,11 +9,9 @@ const LoginInputs = () => {
 
   const idValue = e => {
     setUserId(e.target.value);
-    // console.log(e.target.value);
   };
   const pwValue = e => {
     setUserPw(e.target.value);
-    // console.log(e.target.value);
   };
 
   const moving = () => {
