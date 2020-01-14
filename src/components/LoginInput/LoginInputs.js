@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Link from "next/link";
+import Router from "next/router";
 
 const LoginInputs = () => {
   const [userId, setUserId] = useState("");
@@ -7,16 +9,20 @@ const LoginInputs = () => {
 
   const idValue = e => {
     setUserId(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const pwValue = e => {
     setUserPw(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
+  };
+
+  const moving = () => {
+    Router.push("/");
   };
 
   const onSubmit = e => {
     console.log("Id: ", userId, "pw: ", userPw);
-    fetch("http://3.134.114.32:8080/user/signin", {
+    fetch("http://3.133.82.146:8080/user/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -28,8 +34,13 @@ const LoginInputs = () => {
     })
       .then(response => response.json())
       .then(response => {
-        localStorage.setItem("access_token", response.access_token);
-      });
+        if (response.access_token) {
+          sessionStorage.setItem("access_token", response.access_token);
+          moving();
+        }
+      })
+      .catch(err => console.log(err));
+
     setUserId("");
     setUserPw("");
     e.preventDefault();
@@ -56,7 +67,9 @@ const LoginInputs = () => {
       <Button>로그인</Button>
       <InfoCotainer>
         <Abox>
-          <LieBox>회원가입</LieBox>
+          <Link href="/signup">
+            <LieBox>회원가입</LieBox>
+          </Link>
         </Abox>
 
         <Abox>즐겨찾기</Abox>
@@ -79,7 +92,7 @@ const InputWrapper = styled.form`
 `;
 const IdInput = styled.input`
   height: 72px;
-  width: 390px;
+  width: 300px;
   border-radius: 30px;
   border: 1px solid #cccccc;
   margin-bottom: 20px;
@@ -88,7 +101,7 @@ const IdInput = styled.input`
 `;
 const PwInput = styled.input`
   height: 72px;
-  width: 390px;
+  width: 300px;
   border-radius: 30px;
   border: 1px solid #cccccc;
   padding: 26px 40px;
@@ -104,6 +117,7 @@ const Div = styled.div`
 const Id = styled.h1`
   font-size: 12px;
   font-weight: 800;
+  cursor: pointer;
 `;
 const Find = styled.a`
   font-size: 12px;
@@ -112,11 +126,13 @@ const Find = styled.a`
   font-weight: 800;
 `;
 const Button = styled.button`
-  width: 400px;
+  text-decoration: none;
+  text-align: center;
+  width: 370px;
   height: 58px;
   margin-top: 40px;
   padding: 35px;
-  border-radius: 30px;
+  border-radius: 35px;
   border: none;
   line-height: 5px;
   background: -moz-linear-gradient(
@@ -170,6 +186,7 @@ const InfoCotainer = styled.div`
   border-bottom: 1px solid #cccccc;
 `;
 const Abox = styled.a`
+  cursor: pointer;
   width: 187px;
   height: 100px;
   display: flex;
@@ -185,6 +202,7 @@ const LieBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 const Pbox = styled.div`
   padding-top: 20px;
