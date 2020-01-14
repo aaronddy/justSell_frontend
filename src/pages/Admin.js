@@ -34,18 +34,20 @@ const Background = styled.div`
   background-attachment: fixed;
   position: relative;
   background-size: contain;
-  height: 1000px;
+  /* height: 1000px; */
   z-index: -10;
 `;
 const Div = styled.div`
   display: flex;
-  height: 1000px;
+  /* height: 1000px; */
+  padding-top: 100px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 const TextContainer = styled.div`
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   height: 200px;
   display: flex;
   flex-direction: column;

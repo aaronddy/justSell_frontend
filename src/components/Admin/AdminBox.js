@@ -24,7 +24,8 @@ export default AdminBox;
 const Box = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   height: 240px;
   position: relative;
 
@@ -44,7 +45,8 @@ const BoxImg = styled.div`
   background-image: url("/assets/images/index/index_banner_back.png");
   background-position: right;
   background-repeat: no-repeat;
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   height: 240px;
   z-index: -1;
   background-color: #fff;
@@ -52,7 +54,8 @@ const BoxImg = styled.div`
 `;
 
 const DivWrap = styled.div`
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   height: 240px;
   display: flex;
 `;
