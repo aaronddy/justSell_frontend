@@ -2,6 +2,35 @@ import React from "react";
 import styled from "styled-components";
 import ConsultingInput from "../components/Consulting/ConsultingInput";
 
+const onSubmit = e => {
+  alert("상담신청 완료되었습니다~");
+};
+
+const Consulting = () => {
+  return (
+    <Div>
+      <MainDiv>
+        <LogoDiv>
+          <Logo></Logo>
+          <LogoText>가입상담 신청</LogoText>
+        </LogoDiv>
+        <Title>연락처를 남겨주시면 가입상담을 진행해 드립니다.</Title>
+        <form onSubmit={onSubmit}>
+          <ConsultingInput />
+          <ButtonBox>
+            <Button>상담신청하기</Button>
+          </ButtonBox>
+        </form>
+        <FooterBox>
+          <Footer>저스트셀 / support@equality.co.kr / T. 1522-1522</Footer>
+        </FooterBox>
+      </MainDiv>
+    </Div>
+  );
+};
+
+export default Consulting;
+
 const Div = styled.div`
   height: 100vh;
   display: flex;
@@ -116,26 +145,3 @@ const Footer = styled.div`
   border-top: 1px solid #cccccc;
   color: #b2b2b2;
 `;
-
-const Consulting = () => {
-  return (
-    <Div>
-      <MainDiv>
-        <LogoDiv>
-          <Logo></Logo>
-          <LogoText>가입상담 신청</LogoText>
-        </LogoDiv>
-        <Title>연락처를 남겨주시면 가입상담을 진행해 드립니다.</Title>
-        <ConsultingInput />
-        <ButtonBox>
-          <Button>상담신청하기</Button>
-        </ButtonBox>
-        <FooterBox>
-          <Footer>저스트셀 / support@equality.co.kr / T. 1522-1522</Footer>
-        </FooterBox>
-      </MainDiv>
-    </Div>
-  );
-};
-
-export default Consulting;

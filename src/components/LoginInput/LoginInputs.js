@@ -53,9 +53,7 @@ const LoginInputs = () => {
         <Id>ID저장</Id>
         <Find href="/">ID/비밀번호찾기</Find>
       </Div>
-      <Link href="/admin">
-        <Button>로그인</Button>
-      </Link>
+      <Button>로그인</Button>
       <InfoCotainer>
         <Abox>
           <LieBox>회원가입</LieBox>
