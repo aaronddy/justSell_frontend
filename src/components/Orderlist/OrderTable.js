@@ -1,19 +1,49 @@
-import React from "react";
-import styled from "styled-components";
-// import dynamic from "next/dynamic";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 import { DatePicker } from "antd";
 
 const { RangePicker } = DatePicker;
 
-function onChange(date, dateString) {
+const onChange = (date, dateString) => {
   console.log(date, dateString);
-}
-
-// const DatePicker = dynamic(() => import("./DatePicker"), {
-//   ssr: false
-// });
+};
 
 export default function OrderTable() {
+  const [today, setToday] = useState(false);
+  const [half, setHalf] = useState(false);
+  const [month, setMonth] = useState(false);
+  const [total, setTotal] = useState(false);
+
+  const clickHandler = e => {
+    if (e.target.id === "1") {
+      setToday(!today);
+    } else if (e.target.id === "2") {
+      setHalf(!half);
+    } else if (e.target.id === "3") {
+      setMonth(!month);
+    } else if (e.target.id === "4") {
+      setTotal(!total);
+      setToday(false);
+      setHalf(false);
+      setMonth(false);
+    }
+    console.log(e.target.id);
+    // console.log("wrong");
+  };
+
+  // const clickHandler = id => {
+  //   if (id === 1) {
+  //     setToday(!today);
+  //   } else if (id === 2) {
+  //     setHalf(!half);
+  //   } else if (id === 3) {
+  //     setMonth(!month);
+  //   } else if (id === 4) {
+  //     setTotal(!total);
+  //   }
+  //   console.log(id);
+  // };
+
   return (
     <TableWrap>
       <tbody>
@@ -130,16 +160,24 @@ export default function OrderTable() {
             <DateWrap>
               <RangePicker onChange={onChange} />
               <TableLi_date>
-                <DateTerm>오늘</DateTerm>
+                <DateTerm onClick={clickHandler} today={today} id="1">
+                  오늘
+                </DateTerm>
               </TableLi_date>
               <TableLi_date>
-                <DateTerm>15일</DateTerm>
+                <DateTerm onClick={clickHandler} half={half} id="2">
+                  15일
+                </DateTerm>
               </TableLi_date>
               <TableLi_date>
-                <DateTerm>한달</DateTerm>
+                <DateTerm onClick={clickHandler} month={month} id="3">
+                  한달
+                </DateTerm>
               </TableLi_date>
               <TableLi_date>
-                <DateTerm>전체</DateTerm>
+                <DateTerm onClick={clickHandler} total={total} id="4">
+                  전체
+                </DateTerm>
               </TableLi_date>
             </DateWrap>
           </TdWrap>
@@ -189,24 +227,39 @@ const DateWrap = styled(CheckBoxDiv)`
   flex-direction: row;
   justify-content: flex-end;
 `;
-const DateTerm = styled.a`
+const DateTerm = styled.button`
   display: block;
   line-height: 2.3rem;
   padding: 0 1rem;
   margin-left: 1rem;
-  color: #333333;
+  color: black;
   border: 1px solid #e5e5e5;
   background-color: #e5e5e5;
   cursor: pointer;
-  ${DateWrap}:hover & {
-    background-color: #007add;
-    color: white;
-  }
-`;
-const TextB = styled.b`
-  line-height: 2;
-  padding: 0 1rem;
-  font-size: 1rem;
+  ${props =>
+    props.today &&
+    css`
+      background-color: #007add;
+      color: white;
+    `}
+    ${props =>
+      props.half &&
+      css`
+        background-color: #007add;
+        color: white;
+      `}
+    ${props =>
+      props.month &&
+      css`
+        background-color: #007add;
+        color: white;
+      `}
+    ${props =>
+      props.total &&
+      css`
+        background-color: #007add;
+        color: white;
+      `}
 `;
 
 const Search = styled.select`

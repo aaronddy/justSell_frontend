@@ -59,6 +59,7 @@ const NavContainer = styled.div`
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 2;
   height: 64px;
   background: #363d49;
   display: flex;
@@ -83,6 +84,7 @@ const MenuNav = styled.div`
   align-items: center;
   position: fixed;
   left: 0;
+  z-index: 2;
 `;
 const Login = styled.button`
   text-decoration: none;
