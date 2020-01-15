@@ -2,16 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import LoginInputs from "../components/LoginInput/LoginInputs";
 import Link from "next/link";
+import Language from "../components/Language";
+import { connect } from "react-redux";
 
-const Login = () => {
+const Login = ({ name }) => {
   return (
     <Div>
+      <Language />
       <LoginBox>
         <ImageWrapperDiv>
           <Link href="/">
             <LogoImage />
           </Link>
-          <LoginTitle>저스트셀에 오신 걸 환영합니다</LoginTitle>
+          <LoginTitle>{name.title}</LoginTitle>
         </ImageWrapperDiv>
         <LoginInputs />
       </LoginBox>
@@ -19,7 +22,11 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = state => {
+  return { name: state.ChangeLanguage };
+};
+
+export default connect(mapStateToProps)(Login);
 
 const Div = styled.div`
   display: flex;
