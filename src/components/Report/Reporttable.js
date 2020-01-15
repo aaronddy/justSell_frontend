@@ -109,10 +109,7 @@ const Reporttable = () => {
               <Option>2019/07~12</Option>
             </Select>
           </InfoTitle>
-          <MapBox>
-            {istrue ? table : nexttable}
-            {/* {table} */}
-          </MapBox>
+          <MapBox>{istrue ? table : nexttable}</MapBox>
         </Box>
       </InfoBox>
       <InfoBox>
@@ -144,7 +141,8 @@ const Container = styled.div`
 const InfoBox = styled.div`
   border-radius: 5px;
   box-shadow: 0px 15.13px 15.13px rgba(0, 63, 154, 0.1);
-  width: 550px;
+  width: 100%;
+  max-width: 550px;
   height: 300px;
   /* border: 1px solid green; */
   display: flex;
@@ -153,7 +151,8 @@ const InfoBox = styled.div`
 `;
 
 const InfoTitle = styled.div`
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   height: 60px;
   /* border: 1px solid red; */
   display: flex;
@@ -162,7 +161,8 @@ const InfoTitle = styled.div`
 `;
 
 const Box = styled.div`
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   /* border: 2px solid orange; */
 `;
 
@@ -177,9 +177,9 @@ const Option = styled.option``;
 const Select = styled.select`
   width: 130px;
   height: 45px;
-  font-size: 18px;
+  font-size: 15px;
   color: #363d49;
-  font-weight: 700;
+  /* font-weight: 00; */
 `;
 const Info = styled.div`
   width: 230px;
@@ -205,7 +205,8 @@ const Span = styled.span`
   }
 `;
 const MapBox = styled.div`
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
