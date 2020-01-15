@@ -3,38 +3,25 @@ import styled from "styled-components";
 import Link from "next/link";
 
 const AdminClickBox = () => {
-  const [orderArrow, setOrderArrow] = useState(true);
-  const [reportArrow, setReportArrow] = useState(true);
-  const [chargeArrow, setChargeArrow] = useState(true);
-  const [orderIconSize, setOrderIconSize] = useState(true);
-  const [reportIconSize, setReportIconSize] = useState(true);
-  const [chargeIconSize, setChargeIconSize] = useState(true);
+  const [isActive, setIsActive] = useState("");
 
   const handleHover = e => {
     if (e.target.id === "1") {
-      setOrderArrow(false);
-      setOrderIconSize(false);
+      setIsActive("order");
     } else if (e.target.id === "2") {
-      setReportArrow(false);
-      setReportIconSize(false);
+      setIsActive("report");
     } else if (e.target.id === "3") {
-      setChargeArrow(false);
-      setChargeIconSize(false);
+      setIsActive("charge");
     }
   };
-  const handleHoverLeave = e => {
-    setOrderArrow(true);
-    setReportArrow(true);
-    setChargeArrow(true);
-    setOrderIconSize(true);
-    setReportIconSize(true);
-    setChargeIconSize(true);
+  const handleHoverLeave = () => {
+    setIsActive("");
   };
 
   return (
     <>
       <Link href="/">
-        <DivDiv
+        <DivBox
           id={1}
           onMouseEnter={handleHover}
           onMouseLeave={handleHoverLeave}
@@ -44,24 +31,24 @@ const AdminClickBox = () => {
             <Span>주문현황</Span>
             <Arrow
               whiteArrow={
-                orderArrow
-                  ? "/assets/images/index/icon_next.png"
-                  : "/assets/images/index/icon_next_w.png"
+                isActive === "order"
+                  ? "/assets/images/index/icon_next_w.png"
+                  : "/assets/images/index/icon_next.png"
               }
             />
           </NameDiv>
           <Icon
-            size={orderIconSize ? "80px" : "100px"}
-            onBigIcon={
-              orderArrow
-                ? "/assets/images/index/index_box_icon_1.png"
-                : "/assets/images/index/box_icon_big_1.png"
+            size={isActive === "order" ? "100px" : "80px"}
+            onIcon={
+              isActive === "order"
+                ? "/assets/images/index/box_icon_big_1.png"
+                : "/assets/images/index/index_box_icon_1.png"
             }
           />
-        </DivDiv>
+        </DivBox>
       </Link>
       <Link href="/report">
-        <DivDiv
+        <DivBox
           id={2}
           onMouseEnter={handleHover}
           onMouseLeave={handleHoverLeave}
@@ -71,24 +58,24 @@ const AdminClickBox = () => {
             <Span>투자 리포트</Span>
             <Arrow
               whiteArrow={
-                reportArrow
-                  ? "/assets/images/index/icon_next.png"
-                  : "/assets/images/index/icon_next_w.png"
+                isActive === "report"
+                  ? "/assets/images/index/icon_next_w.png"
+                  : "/assets/images/index/icon_next.png"
               }
             />
           </NameDiv>
           <Icon
-            size={reportIconSize ? "80px" : "100px"}
-            onBigIcon={
-              reportArrow
-                ? "/assets/images/index/index_box_icon_2.png"
-                : "/assets/images/index/box_icon_big_2.png"
+            size={isActive === "report" ? "100px" : "80px"}
+            onIcon={
+              isActive === "report"
+                ? "/assets/images/index/box_icon_big_2.png"
+                : "/assets/images/index/index_box_icon_2.png"
             }
           />
-        </DivDiv>
+        </DivBox>
       </Link>
       <Link href="/">
-        <DivDiv
+        <DivBox
           id={3}
           onMouseEnter={handleHover}
           onMouseLeave={handleHoverLeave}
@@ -97,21 +84,21 @@ const AdminClickBox = () => {
             <Span>충전금 내역</Span>
             <Arrow
               whiteArrow={
-                chargeArrow
-                  ? "/assets/images/index/icon_next.png"
-                  : "/assets/images/index/icon_next_w.png"
+                isActive === "charge"
+                  ? "/assets/images/index/icon_next_w.png"
+                  : "/assets/images/index/icon_next.png"
               }
             />
           </NameDiv>
           <Icon
-            size={chargeIconSize ? "80px" : "100px"}
-            onBigIcon={
-              chargeArrow
-                ? "/assets/images/index/index_box_icon_3.png"
-                : "/assets/images/index/box_icon_big_3.png"
+            size={isActive === "charge" ? "100px" : "80px"}
+            onIcon={
+              isActive === "charge"
+                ? "/assets/images/index/box_icon_big_3.png"
+                : "/assets/images/index/index_box_icon_3.png"
             }
           />
-        </DivDiv>
+        </DivBox>
       </Link>
     </>
   );
@@ -119,8 +106,9 @@ const AdminClickBox = () => {
 
 export default AdminClickBox;
 
-const DivDiv = styled.div`
-  width: 331px;
+const DivBox = styled.div`
+  width: 100%;
+  max-width: 331px;
   height: 240px;
   background: #fff;
   margin-left: 2px;
@@ -151,7 +139,7 @@ const Arrow = styled.div`
 `;
 
 const Icon = styled.div`
-  background-image: url(${props => props.onBigIcon});
+  background-image: url(${props => props.onIcon});
   background-repeat: no-repeat;
   background-size: cover;
   width: ${props => props.size};
