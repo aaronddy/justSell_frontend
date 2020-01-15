@@ -35,7 +35,7 @@ const Background = styled.div`
   position: relative;
   background-size: contain;
   /* height: 1000px; */
-  z-index: -10;
+  /* z-index: -10; */
 `;
 const Div = styled.div`
   display: flex;
@@ -57,6 +57,7 @@ const TextContainer = styled.div`
 const Text = styled.p`
   font-size: 32px;
   font-weight: 700;
+  margin-top: -20px;
 `;
 const Span = styled.span`
   font-size: 32px;
@@ -65,7 +66,8 @@ const Span = styled.span`
 `;
 const Button = styled.button`
   width: 192px;
-  height: 48px;
+  padding: 10px 0;
+  /* height: 48px; */
   color: #00768f;
   border: 1px solid #00768f;
   background-color: #fff;
