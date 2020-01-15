@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/layouts/Layout";
 import styled from "styled-components";
+
 import RegistrationBox from "../components/ProductRegistration/RegistrationBox";
 import BasicInfoInputBox from "../components/ProductRegistration/BasicInfoInputBox";
 import SalesInfoBox from "../components/ProductRegistration/SalesInfoBox";
