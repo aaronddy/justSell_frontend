@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const removeToken = () => {
   window.localStorage.clear();
 };
 
 const SubNav = ({ children }) => {
+  const router = useRouter();
   return (
     <>
       <NavContainer>
@@ -14,33 +16,37 @@ const SubNav = ({ children }) => {
           <Link href="/">
             <Login onClick={removeToken}>로그아웃</Login>
           </Link>
-          <Link href="/signup">
-            <Signup>회원가입</Signup>
-          </Link>
         </NavDiv>
       </NavContainer>
       <MenuNav>
         <ImgDiv>
-          <Link href="/">
-            <Image></Image>
-          </Link>
+          <Image onClick={() => router.push("/admin")}></Image>
         </ImgDiv>
         <MenuContainer>
-          <Link href="/orderlist">
-            <Menu>주문 현황</Menu>
-          </Link>
-          <Link href="/report">
-            <Menu>투자 리포트</Menu>
-          </Link>
-          <Link href="/">
-            <Menu>충전금 내역</Menu>
-          </Link>
-          <Link href="/ProductRegistration">
-            <Menu>상품 등록</Menu>
-          </Link>
-          <Link href="/">
-            <Menu>상품 관리</Menu>
-          </Link>
+          <Menu
+            id={1}
+            background={router.pathname === "/orderlist" ? "#2B313B" : ""}
+            onClick={() => router.push("/orderlist")}
+          >
+            주문 현황
+          </Menu>
+          <Menu
+            background={router.route === "/report" ? "#2B313B" : ""}
+            onClick={() => router.push("/report")}
+          >
+            투자 리포트
+          </Menu>
+          <Menu onClick={() => router.push("/")}>충전금 내역</Menu>
+          <Menu
+            id={4}
+            background={
+              router.pathname === "/productRegistration" ? "#2B313B" : ""
+            }
+            onClick={() => router.push("/productRegistration")}
+          >
+            상품 등록
+          </Menu>
+          <Menu onClick={() => router.push("/")}>상품 관리</Menu>
         </MenuContainer>
       </MenuNav>
     </>
@@ -88,9 +94,11 @@ const Login = styled.button`
   border: none;
   font-size: 17px;
   background: none;
+  outline: none;
 `;
 const Signup = styled.button`
   text-decoration: none;
+  outline: none;
   color: white;
   font-weight: 700;
   letter-spacing: -1px;
@@ -120,6 +128,7 @@ const Image = styled.div`
   top: 30px;
   left: 48px;
   z-index: 1;
+  cursor: pointer;
 `;
 const MenuContainer = styled.div`
   width: 100%;
@@ -138,6 +147,10 @@ const Menu = styled.div`
   text-decoration: none;
   font-size: 19px;
   font-weight: 700;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
   cursor: pointer;
+  background-color: ${props => props.background};
+  width: 100%;
+  padding: 35px 0;
+  text-align: center;
 `;
