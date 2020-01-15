@@ -18,9 +18,10 @@ const Div = styled.div`
   width: calc(100% - 240px);
   height: auto;
   /* height: calc(100% - 64px); */
-  position: absolute;
-  right: 0;
+  /* position: absolute;
+  right: 0; */
   /* bottom: 0; */
+  margin-left: 240px;
   padding-top: 64px;
-  z-index: -1;
+  /* z-index: -1; */
 `;
