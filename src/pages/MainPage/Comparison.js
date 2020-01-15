@@ -136,10 +136,10 @@ const TitleRightImg = styled(TitleLeftImg)`
 const VsImg = styled.div`
   background-image: url("/assets/images/vs_img.png");
   background-repeat: no-repeat;
-  background-size: 14rem 10rem;
+  background-size: 14rem 8rem;
   display: inline-block;
   width: 14rem;
-  height: 10rem;
+  height: 8rem;
   vertical-align: bottom;
   margin: 0 7rem;
 `;
