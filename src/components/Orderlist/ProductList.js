@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Products from "./Products";
 
-export default function ProductList(props) {
-  const [data, setData] = useState(props.data);
+export default function ProductList({ dataArr }) {
+  console.log(dataArr);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/assets/data/orderdata.json")
-  //     .then(res => res.json())
-  //     .then(res => setData(res.data));
-  //   // const fetchPosts = async () => {
-  //   //   const res = await axios.get("http://localhost:3000/data/orderdata.json");
-  //   // setData(res);
-  //   // console.log(res);
-  //   // };
-  //   // fetchPosts();
-  // }, []);
-  // // console.log(data);
+  const list = dataArr.map((product, index) => (
+    <Products
+      date={product.order_date}
+      product_name={product.product_name}
+      buyer={product.orderer_name}
+      taker={product.receiver_name}
+      price={product.product_sale_price}
+      post_price={product.product_deliver_fee}
+      order_state={product.order_status}
+      key={index}
+    />
+  ));
 
   return (
     <ListContainer>
@@ -33,21 +33,7 @@ export default function ProductList(props) {
           </TrContainer>
         </thead>
 
-        <tbody>
-          {data.map((product, index) => (
-            <Products
-              date={product.date}
-              // image={product.image}
-              product_name={product.product_name}
-              buyer={product.buyer}
-              taker={product.taker}
-              price={product.price}
-              post_price={product.post_price}
-              order_state={product.order_state}
-              key={index}
-            />
-          ))}
-        </tbody>
+        <tbody>{list}</tbody>
       </Table>
     </ListContainer>
   );
