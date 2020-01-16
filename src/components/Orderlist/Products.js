@@ -20,6 +20,7 @@ export default function Products(props) {
 
 const Tr = styled.tr`
   border-bottom: 1px solid #ececec;
+  width: 100%;
 `;
 const TdWrap = styled.td`
   font-size: 0.9rem;
