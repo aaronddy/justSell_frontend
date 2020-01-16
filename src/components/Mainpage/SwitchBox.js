@@ -1,46 +1,17 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
 
-export default class Sec_3_contents extends Component {
+export default class SwitchBox extends Component {
   state = {
     active: null
   };
 
   clickHandler = id => {
     this.setState({ active: id });
-    console.log(this.state.active);
-    console.log(this.state.showUp);
-    console.log(id);
+    // console.log(this.state.active);
+    // console.log(id);
   };
 
-  // state = {
-  //   contents: [
-  //     {
-  //       id: "1",
-  //       active: false,
-  //       title: "Keyword Optimization",
-  //       content:
-  //         "1억건 이상의 자체 판매데이터와 실시간 트렌드에 대한 \n딥러닝 분석을 통해 최적의 상품 검색 키워드들을 도출합니다.",
-  //       image: "./assets/images/main/main_box_img_1.png"
-  //     },
-  //     {
-  //       id: "2",
-  //       active: false,
-  //       title: "Sales Forcasting",
-  //       content:
-  //         "매일 3억개 이상의 데이터 수집 분석을 통해 \n'지금 이 순간' 구매매력도가 높을 상품들로 판매합니다.",
-  //       image: "./assets/images/main/main_box_img_2.png"
-  //     },
-  //     {
-  //       id: "3",
-  //       active: false,
-  //       title: "Image Retrival",
-  //       content:
-  //         "Feature Detection 기술을 활용하여 \n기존 상품 이미지들을 더욱 구매 매력적인 이미지들로 치환합니다.",
-  //       image: "./assets/images/main/main_box_img_3.png"
-  //     }
-  //   ]
-  // };
   render() {
     let tapContent;
 
@@ -100,46 +71,35 @@ export default class Sec_3_contents extends Component {
       );
     }
     return (
-      <>
-        <SelectBox>
-          <UlBox>
-            <Btn
-              // myId={1}
-              // fontColor="#24aaaa"
-              // bgColor="#72d2c0"
-              onClick={e => {
-                this.clickHandler(1);
-              }}
-              isActive={this.state.active === 1}
-            >
-              <span>Keyword Optimization</span>
-            </Btn>
-            <Btn2
-              // myId={2}
-              // fontColor="#00768f"
-              // bgColor="#3bbbb4"
-              onClick={e => {
-                this.clickHandler(2);
-              }}
-              isActive={this.state.active === 2}
-            >
-              <span>Sales Forcasting</span>
-            </Btn2>
-            <Btn3
-              // myId={3}
-              // fontColor="#007add"
-              // bgColor="#3ba6e1"
-              onClick={e => {
-                this.clickHandler(3);
-              }}
-              isActive={this.state.active === 3}
-            >
-              <span>Image Retrival</span>
-            </Btn3>
-          </UlBox>
-          {tapContent}
-        </SelectBox>
-      </>
+      <SelectBox>
+        <UlBox>
+          <Btn
+            onClick={e => {
+              this.clickHandler(1);
+            }}
+            isActive={this.state.active === 1}
+          >
+            <span>Keyword Optimization</span>
+          </Btn>
+          <Btn2
+            onClick={e => {
+              this.clickHandler(2);
+            }}
+            isActive={this.state.active === 2}
+          >
+            <span>Sales Forcasting</span>
+          </Btn2>
+          <Btn3
+            onClick={e => {
+              this.clickHandler(3);
+            }}
+            isActive={this.state.active === 3}
+          >
+            <span>Image Retrival</span>
+          </Btn3>
+        </UlBox>
+        {tapContent}
+      </SelectBox>
     );
   }
 }

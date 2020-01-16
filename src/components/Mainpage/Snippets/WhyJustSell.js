@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Sec_2_containers from "../../components/Mainpage/Sec_2_containers";
+import FourImgBox from "../FourImgBox";
 
 export default function WhyJustSell() {
   return (
@@ -19,7 +19,7 @@ export default function WhyJustSell() {
             원금과 이익이 보장된 창업입니다!
           </SubH2>
         </SubTitleArea>
-        <Sec_2_containers />
+        <FourImgBox />
       </MainSection>
     </div>
   );

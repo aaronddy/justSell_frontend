@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Sec_3_contents from "../../components/Mainpage/Sec_3_contents";
+import SwitchBox from "../SwitchBox";
 
 export default function HighInterest() {
   return (
@@ -26,7 +26,7 @@ export default function HighInterest() {
           저스트셀의 <B>‘인공지능 기반 판매최적화 알고리즘'</B>을 통해
           <br />더 높은 수익률로 판매진행
         </TextBoxSpan>
-        <Sec_3_contents />
+        <SwitchBox />
         <Margin>
           <TextBoxSpan>
             상품 판매에 따른 정산 주기가 평균 1달이므로,

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Sec_4_contents() {
+export default function CompareItems() {
   return (
     <div>
       <VsContainer>

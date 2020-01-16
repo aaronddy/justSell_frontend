@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Sec_6_contents() {
+export default function BlueBackground() {
   return (
     <>
       <ContentArea>
