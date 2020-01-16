@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Router from "next/router";
+import { connect } from "react-redux";
 
-const LoginInputs = () => {
+const LoginInputs = ({ apple }) => {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
 
@@ -15,7 +16,7 @@ const LoginInputs = () => {
   };
 
   const moving = () => {
-    Router.push("/");
+    Router.push("/admin");
   };
 
   const onSubmit = e => {
@@ -50,36 +51,40 @@ const LoginInputs = () => {
         type="email"
         value={userId}
         onChange={idValue}
-        placeholder="아이디를 입력하세요."
+        placeholder={apple.idPlaceholder}
       ></IdInput>
       <PwInput
         type="password"
         value={userPw}
         onChange={pwValue}
-        placeholder="비밀번호를 입력하세요."
+        placeholder={apple.pwPlaceholder}
       ></PwInput>
       <Div>
-        <Id>ID저장</Id>
-        <Find href="/">ID/비밀번호찾기</Find>
+        <Id>{apple.save}</Id>
+        <Find href="/">{apple.find}</Find>
       </Div>
-      <Button>로그인</Button>
+      <Button>{apple.login}</Button>
       <InfoCotainer>
         <Abox>
           <Link href="/signup">
-            <LieBox>회원가입</LieBox>
+            <LieBox>{apple.signup}</LieBox>
           </Link>
         </Abox>
 
-        <Abox>즐겨찾기</Abox>
+        <Abox>{apple.bookMark}</Abox>
       </InfoCotainer>
       <Pbox>
-        <Ptext>저스트셀 / support@equality.co.kr / T. 1522-1522</Ptext>
+        <Ptext>{apple.footer}</Ptext>
       </Pbox>
     </InputWrapper>
   );
 };
 
-export default LoginInputs;
+const mapStateToProps = state => {
+  return { apple: state.ChangeLanguage };
+};
+
+export default connect(mapStateToProps)(LoginInputs);
 
 const InputWrapper = styled.form`
   height: 160px;
@@ -89,21 +94,23 @@ const InputWrapper = styled.form`
   align-items: center;
 `;
 const IdInput = styled.input`
-  height: 72px;
-  width: 300px;
+  /* height: 72px; */
+  width: 370px;
   border-radius: 30px;
   border: 1px solid #cccccc;
   margin-bottom: 20px;
-  padding: 26px 40px;
+  padding: 20px 40px;
   outline: none;
+  font-size: 18px;
 `;
-const PwInput = styled.input`
-  height: 72px;
-  width: 300px;
+const PwInput = styled(IdInput)`
+  /* height: 72px; */
+  /* width: 370px;
   border-radius: 30px;
   border: 1px solid #cccccc;
-  padding: 26px 40px;
+  padding: 20px 40px;
   outline: none;
+  font-size: 18px; */
 `;
 const Div = styled.div`
   width: 280px;
