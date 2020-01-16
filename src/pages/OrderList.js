@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import OrderTable from "../components/Orderlist/OrderTable";
-import ProductList from "../components/Orderlist/ProductList";
 import Layout from "../components/layouts/Layout";
 OrderList.Layout = Layout;
 
@@ -15,11 +14,6 @@ export default function OrderList() {
           <H2>주문현황을 확인하세요</H2>
         </TitleWrapper>
         <OrderTable />
-        <OrderBtn>
-          <Btn1>검색하기</Btn1>
-          <Btn2>초기화</Btn2>
-        </OrderBtn>
-        <ProductList />
       </TableContainer>
     </Container>
   );
@@ -60,33 +54,4 @@ const H1 = styled.h1`
 `;
 const H2 = styled(H1)`
   font-size: 1rem;
-`;
-
-const OrderBtn = styled.div`
-  width: 100%;
-  padding-top: 3rem;
-  padding-bottom: 5rem;
-  text-align: center;
-`;
-const Btn1 = styled.a`
-  background: linear-gradient(
-    150deg,
-    rgba(55, 209, 187, 1) 0%,
-    rgba(25, 177, 214, 1) 50.6%,
-    rgba(0, 150, 236, 1) 100%
-  );
-  margin-right: 1rem;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  display: inline-block;
-  width: 14rem;
-  padding: 1rem 0;
-  border-radius: 2px;
-`;
-
-const Btn2 = styled(Btn1)`
-  background: #e5e5e5;
-  color: black;
-  font-weight: normal;
 `;

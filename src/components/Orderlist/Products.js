@@ -20,6 +20,7 @@ export default function Products(props) {
 
 const Tr = styled.tr`
   border-bottom: 1px solid #ececec;
+  width: 100%;
 `;
 const TdWrap = styled.td`
   font-size: 0.9rem;
@@ -54,33 +55,3 @@ const TdWrap3 = styled(TdWrap)`
   vertical-align: middle;
   padding: 2rem;
 `;
-
-// const TdWrap = styled.td`
-//   font-size: 0.9rem;
-//   text-align: center;
-//   text-decoration: underline;
-//   color: #1c9d9f;
-//   vertical-align: middle;
-// `;
-// const TdWrap3 = styled(TdWrap)`
-//   padding: 2rem;
-//   text-decoration: none;
-//   color: black;
-//   border-left: 1px solid #ececec;
-// `;
-// const TdWrap3 = styled(TdWrap3)`
-//   vertical-align: middle;
-//   display: inline-block;
-//   text-align: left;
-//   line-height: 1.6;
-// `;
-
-// const Image = styled.div`
-//   background-image: url("/assets/images/order_state/order_list_img.png");
-//   background-repeat: no-repeat;
-//   background-size: 65px 65px;
-//   width: 65px;
-//   height: 65px;
-//   display: inline-block;
-//   padding-right: 15px;
-// `;

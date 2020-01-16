@@ -2,28 +2,28 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Products from "./Products";
 
-export default function ProductList() {
-  const [data, setData] = useState([]);
+export default function ProductList(props) {
+  const [data, setData] = useState(props.data);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/assets/data/orderdata.json")
-      .then(res => res.json())
-      .then(res => setData(res.data));
-    // const fetchPosts = async () => {
-    //   const res = await axios.get("http://localhost:3000/data/orderdata.json");
-    // setData(res);
-    // console.log(res);
-    // };
-    // fetchPosts();
-  }, []);
-  console.log(data);
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/assets/data/orderdata.json")
+  //     .then(res => res.json())
+  //     .then(res => setData(res.data));
+  //   // const fetchPosts = async () => {
+  //   //   const res = await axios.get("http://localhost:3000/data/orderdata.json");
+  //   // setData(res);
+  //   // console.log(res);
+  //   // };
+  //   // fetchPosts();
+  // }, []);
+  // // console.log(data);
 
   return (
     <ListContainer>
       <Table>
         <thead>
           <TrContainer>
-            <TdWrap>주문일시/주문번호</TdWrap>
+            <TdWrap>주문일시</TdWrap>
             <TdWrap2>주문상품</TdWrap2>
             <TdWrap3>주문자</TdWrap3>
             <TdWrap3>받는분</TdWrap3>
@@ -61,6 +61,7 @@ const ListContainer = styled.div`
 `;
 const Table = styled.table`
   border-collapse: collapse;
+  width: 100%;
 `;
 const TrContainer = styled.tr``;
 
