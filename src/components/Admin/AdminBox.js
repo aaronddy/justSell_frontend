@@ -46,6 +46,7 @@ const BoxImg = styled.div`
   background-position: right;
   background-repeat: no-repeat;
   width: 100%;
+  
   max-width: 1000px;
   height: 240px;
   z-index: -1;
