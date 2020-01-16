@@ -108,6 +108,7 @@ const TextWrapH1 = styled.h1`
   display: table;
   float: right;
   margin-right: 5rem;
+  /* margin-left: 2rem; */
 `;
 
 const TextWrapB = styled.b`
@@ -124,11 +125,11 @@ const ContentP = styled.p`
 `;
 
 const ContentImg = styled.div`
-  width: 550px;
-  height: 500px;
+  width: 650px;
+  height: 550px;
   background-image: url("/assets/images/main_sec_7_1.png");
   background-repeat: no-repeat;
-  background-size: 550px 500px;
+  background-size: cover;
 `;
 
 const Img2 = styled(ContentImg)`

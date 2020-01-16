@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import Intro from "./MainPage/Intro";
-import WhyJustSell from "./MainPage/WhyJustSell";
-import HighInterest from "./MainPage/HighInterest";
-import Comparison from "./MainPage/Comparison";
-import WinWithJust from "./MainPage/WinWithJust";
-import WhyChooseUs from "./MainPage/WhyChooseUs";
-import EverywhereCanSell from "./MainPage/EverywhereCanSell";
-import ServiceOfAssurance from "./MainPage/ServiceOfAssurance";
-import Benefits from "./MainPage/Benefits";
+import Intro from "../components/Mainpage/Snippets/Intro";
+import WhyJustSell from "../components/Mainpage/Snippets/WhyJustSell";
+import HighInterest from "../components/Mainpage/Snippets/HighInterest";
+import Comparison from "../components/Mainpage/Snippets/Comparison";
+import WinWithJust from "../components/Mainpage/Snippets/WinWithJust";
+import WhyChooseUs from "../components/Mainpage/Snippets/WhyChooseUs";
+import EverywhereCanSell from "../components/Mainpage/Snippets/EverywhereCanSell";
+import ServiceOfAssurance from "../components/Mainpage/Snippets/ServiceOfAssurance";
+import Benefits from "../components/Mainpage/Snippets/Benefits";
 
 export default function MainPage() {
   return (

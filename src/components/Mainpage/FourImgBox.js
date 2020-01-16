@@ -1,15 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Sec_2_containers() {
+export default function fourImgBox() {
   return (
     <div>
       <List>
         <Listli>
-          {/* <ListOrder></ListOrder> */}
-          {/* <Arrow></Arrow> */}
           <ListHead></ListHead>
-          {/* <Arrow></Arrow> */}
           <ListBody>
             <div class="list_body_text_wrap">
               <BodyH1>충전금 충전</BodyH1>
@@ -40,9 +37,13 @@ export default function Sec_2_containers() {
           <ListHead3></ListHead3>
           <ListBody3>
             <div class="list_body_text_wrap">
-              <BodyH1>충전금으로 상품 매입</BodyH1>
+              <BodyH1>
+                충전금으로 <br /> 상품 매입
+              </BodyH1>
               <BodyH2>
-                판매된 상품을 충전금을 이용해
+                판매된 상품을
+                <br />
+                충전금을 이용해
                 <br />
                 저스트셀에서 매입합니다.
               </BodyH2>

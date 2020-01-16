@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Sec_4_contents from "../../components/Mainpage/Sec_4_contents";
+import CompareItems from "../CompareItems";
 
 export default function Comparison() {
   return (
@@ -26,7 +26,7 @@ export default function Comparison() {
               <TitleRightSpan>JustSell 창업</TitleRightSpan>
             </VsTitle>
           </VsAreaTitle>
-          <Sec_4_contents />
+          <CompareItems />
           <MiddleBanner>
             <BannerLine>
               <BeforeP />

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Sec_6_contents from "../../components/Mainpage/Sec_6_contents";
+import BlueBackground from "../BlueBackground";
 
 export default function WhyChooseUs() {
   return (
@@ -13,7 +13,7 @@ export default function WhyChooseUs() {
         </H2>
       </div>
       {/* <SecSixBefore /> */}
-      <Sec_6_contents />
+      <BlueBackground />
       {/* <SecSixAfter /> */}
     </Section>
   );
