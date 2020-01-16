@@ -83,7 +83,6 @@ const infoInitialState = {
   maanger_email2: ""
 };
 const reducer = (state, { action }) => {
-  console.log("action : ", action);
   const { name, value } = action;
   if (name === "check1") return { ...state, [name]: !state.check1 };
   if (name === "check2") return { ...state, [name]: !state.check2 };

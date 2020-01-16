@@ -165,9 +165,13 @@ hr {
 ​ input,
 select {
   vertical-align: middle;
+  
 }
 ​ textarea {
   resize: none;
 }
-
+input:focus {
+  outline:none;
+  border:0.5px solid #818181;
+}
 `;
