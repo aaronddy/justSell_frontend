@@ -14,35 +14,21 @@ export default function OrderTable() {
   const [month, setMonth] = useState(false);
   const [total, setTotal] = useState(false);
 
-  const clickHandler = e => {
-    if (e.target.id === "1") {
+  const clickHandler = id => {
+    if (id === "1") {
       setToday(!today);
-    } else if (e.target.id === "2") {
+    } else if (id === "2") {
       setHalf(!half);
-    } else if (e.target.id === "3") {
+    } else if (id === "3") {
       setMonth(!month);
-    } else if (e.target.id === "4") {
+    } else if (id === "4") {
       setTotal(!total);
       setToday(false);
       setHalf(false);
       setMonth(false);
     }
-    console.log(e.target.id);
-    // console.log("wrong");
+    console.log(id);
   };
-
-  // const clickHandler = id => {
-  //   if (id === 1) {
-  //     setToday(!today);
-  //   } else if (id === 2) {
-  //     setHalf(!half);
-  //   } else if (id === 3) {
-  //     setMonth(!month);
-  //   } else if (id === 4) {
-  //     setTotal(!total);
-  //   }
-  //   console.log(id);
-  // };
 
   return (
     <TableWrap>
@@ -160,22 +146,42 @@ export default function OrderTable() {
             <DateWrap>
               <RangePicker onChange={onChange} />
               <TableLi_date>
-                <DateTerm onClick={clickHandler} today={today} id="1">
+                <DateTerm
+                  onClick={() => {
+                    clickHandler("1");
+                  }}
+                  today={today}
+                >
                   오늘
                 </DateTerm>
               </TableLi_date>
               <TableLi_date>
-                <DateTerm onClick={clickHandler} half={half} id="2">
+                <DateTerm
+                  onClick={() => {
+                    clickHandler("2");
+                  }}
+                  half={half}
+                >
                   15일
                 </DateTerm>
               </TableLi_date>
               <TableLi_date>
-                <DateTerm onClick={clickHandler} month={month} id="3">
+                <DateTerm
+                  onClick={() => {
+                    clickHandler("3");
+                  }}
+                  month={month}
+                >
                   한달
                 </DateTerm>
               </TableLi_date>
               <TableLi_date>
-                <DateTerm onClick={clickHandler} total={total} id="4">
+                <DateTerm
+                  onClick={() => {
+                    clickHandler("4");
+                  }}
+                  total={total}
+                >
                   전체
                 </DateTerm>
               </TableLi_date>
@@ -236,6 +242,7 @@ const DateTerm = styled.button`
   border: 1px solid #e5e5e5;
   background-color: #e5e5e5;
   cursor: pointer;
+  outline: none;
   ${props =>
     props.today &&
     css`
