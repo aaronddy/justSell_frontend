@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Products(props) {
   return (
     <Tr>
-      <TdWrap>{props.date}</TdWrap>
+      <TdWrap>{props.info}</TdWrap>
       <TdWrap2>
         <Image />
         {props.product_name}
@@ -36,18 +36,17 @@ const TdWrap2 = styled(TdWrap)`
   border-left: 1px solid #ececec;
   text-align: left;
   display: flex;
-  flex-direction: row;
   line-height: 1.3rem;
-  align-content: center;
+  align-items: center;
 `;
 const Image = styled.div`
-  background-image: url("/assets/images/order_state/order_list_img.png");
+  background-image: url("/assets/images/managing/image.jpg");
   background-repeat: no-repeat;
-  background-size: 4rem 4rem;
-  width: 4rem;
+  background-size: 4.3rem 4rem;
+  width: 4.3rem;
   height: 4rem;
   display: inline-block;
-  padding-right: 4rem;
+  padding-right: 6rem;
 `;
 const TdWrap3 = styled(TdWrap)`
   color: black;
