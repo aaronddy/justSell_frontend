@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const removeToken = () => {
-  window.localStorage.clear();
+  window.sessionStorage.clear();
 };
 
 const SubNav = ({ children }) => {
@@ -36,7 +36,12 @@ const SubNav = ({ children }) => {
           >
             투자 리포트
           </Menu>
-          <Menu onClick={() => router.push("/")}>충전금 내역</Menu>
+          <Menu
+            background={router.pathname === "/charge" ? "#2B313B" : ""}
+            onClick={() => router.push("/charge")}
+          >
+            충전금 내역
+          </Menu>
           <Menu
             id={4}
             background={
@@ -46,7 +51,12 @@ const SubNav = ({ children }) => {
           >
             상품 등록
           </Menu>
-          <Menu onClick={() => router.push("/")}>상품 관리</Menu>
+          <Menu
+            background={router.pathname === "/managing" ? "#2B313B" : ""}
+            onClick={() => router.push("/managing")}
+          >
+            상품 관리
+          </Menu>
         </MenuContainer>
       </MenuNav>
     </>
