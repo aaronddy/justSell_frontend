@@ -125,9 +125,9 @@ export default function SalesInfoBox({
 }
 
 const CheckAreaWrapper = styled.div`
-  max-width: 900px;
+  max-width: 1280px;
   width: 100%;
-  margin: 24px auto;
+  margin: 0px auto 24px;
 `;
 const Title = styled.div`
   display: inline-block;
@@ -147,10 +147,12 @@ const InputWrap = styled.div`
   margin-top: 12px;
 `;
 const CategorySearchButton = styled.button`
+  display: block;
+  margin: auto 0;
   background-color: #0891e4;
   border: 1px solid #0d99de;
   color: white;
-  padding: 12px 48px;
+  padding: 8px 32px;
   font-size: 14px;
   ${props =>
     !props.clicked &&
@@ -161,39 +163,27 @@ const CategorySearchButton = styled.button`
       margin-left: 0px;
     `}
 `;
-const SearchWrap = styled.div`
-  position: relative;
-  ${props =>
-    !props.title &&
-    css`
-      margin-left: 19%;
-    `}
-`;
-const SearchInput = styled.input`
-  padding: 16px 108px 16px 12px;
-  font-size: 16px;
-  ::placeholder {
-    color: rgba(0, 0, 0, 0.3);
-  }
-`;
-
-const SearchIcon = styled.img`
-  display: inline-block;
-  position: absolute;
-  top: 22%;
-  right: 2%;
-  width: 30px;
-  height: 28px;
-`;
 const ProductNameInput = styled.input`
+  display: block;
+  margin: auto 0;
   width: 24%;
-  padding: 16px 0 16px 12px;
-  font-size: 16px;
+  padding: 16px 12px;
+  font-size: 13px;
   border: 1px solid #ddd;
   ::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
 `;
+const Won = styled.span`
+  display: block;
+  margin: auto 0;
+  border: 1px solid #ddd;
+  border-left: 0px;
+  text-align: center;
+  font-size: 13px;
+  padding: 16px 12px;
+`;
+
 const BrandSearch = styled.input`
   padding: 16px 108px 16px 12px;
   font-size: 16px;
@@ -222,11 +212,4 @@ const BrandExistCheck = styled.span`
     background: url("/assets/images/ui/ico_checkbox.png") no-repeat;
     background-position: -20px 0;
   }
-`;
-const Won = styled.span`
-  border: 1px solid #ddd;
-  text-align: center;
-  font-size: 13px;
-  padding: 18px 12px;
-  margin: auto 0 auto -1px;
 `;

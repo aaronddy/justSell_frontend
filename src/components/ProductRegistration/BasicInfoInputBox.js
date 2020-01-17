@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 export default function BasicInfoInputBox({
   basicInfoData,
   basicInfoDataHandler
 }) {
   const { category, product_name, brand } = basicInfoData;
+  const [isBrandChecked, setIsBrandChecked] = useState(true);
+  const toggleIsBrandChecked = () => {
+    setIsBrandChecked(!isBrandChecked);
+  };
+
   return (
     <CheckAreaWrapper>
       {/* 카테고리 */}
@@ -17,9 +22,10 @@ export default function BasicInfoInputBox({
         </EventArea>
       </InputWrap>
       {/* 키워드로 검색 */}
-      <InputWrap>
+      <InputWrap marginTop={"0"}>
+        <Title></Title>
         <EventArea>
-          <SearchWrap title={false}>
+          <SearchWrap>
             <SearchInput
               type="text"
               name="category"
@@ -43,6 +49,7 @@ export default function BasicInfoInputBox({
           <ProductNameInput
             type="text"
             placeholder="판매할 상품에 적합한 상품명을 입력해주세요. 최대(70자)"
+            name="product_name"
             value={product_name}
             onChange={basicInfoDataHandler}
           />
@@ -61,7 +68,10 @@ export default function BasicInfoInputBox({
             <BrandSearch
               type="text"
               placeholder="브랜드명을 검색하세요"
+              name="brand"
               value={brand}
+              disabled={isBrandChecked ? "disabled" : ""}
+              isBrandChecked={isBrandChecked}
               onChange={basicInfoDataHandler}
             />
             <SearchIcon
@@ -70,7 +80,12 @@ export default function BasicInfoInputBox({
             />
           </SearchWrap>
           <BrandCheckBox>
-            <BrandExistCheck>브랜드없음</BrandExistCheck>
+            <BrandExistCheck
+              isBrandChecked={isBrandChecked}
+              onClick={toggleIsBrandChecked}
+            >
+              브랜드없음
+            </BrandExistCheck>
           </BrandCheckBox>
         </EventArea>
       </InputWrap>
@@ -79,9 +94,9 @@ export default function BasicInfoInputBox({
 }
 
 const CheckAreaWrapper = styled.div`
-  max-width: 900px;
+  max-width: 1280px;
   width: 100%;
-  margin: 24px auto;
+  margin: 0px auto 24px;
 `;
 const Title = styled.div`
   display: inline-block;
@@ -99,26 +114,32 @@ const EventArea = styled.div`
 const InputWrap = styled.div`
   display: flex;
   margin-top: 12px;
+  ${props =>
+    props.marginTop &&
+    css`
+      margin-top: ${props.marginTop}px;
+    `}
 `;
 const CategorySearchButton = styled.button`
+  display: block;
+  margin: auto 0;
   background-color: #0891e4;
   border: 1px solid #0d99de;
   color: white;
-  padding: 15px 24px;
-  border-radius: 4px;
+  padding: 8px 18px;
+  border-radius: 3px;
   font-size: 14px;
 `;
 const SearchWrap = styled.div`
   position: relative;
-  ${props =>
-    !props.title &&
-    css`
-      margin-left: 19%;
-    `}
 `;
+
 const SearchInput = styled.input`
-  padding: 16px 108px 16px 12px;
-  font-size: 16px;
+  display: block;
+  margin: auto 0;
+  padding: 12px 108px 12px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
   ::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
@@ -127,15 +148,19 @@ const SearchInput = styled.input`
 const SearchIcon = styled.img`
   display: inline-block;
   position: absolute;
-  top: 22%;
+  top: 27%;
   right: 2%;
-  width: 30px;
-  height: 28px;
+  width: 24px;
+  height: 22px;
 `;
+
 const ProductNameInput = styled.input`
+  display: block;
+  margin: auto 0;
   width: 85%;
-  padding: 16px 0 16px 12px;
-  font-size: 16px;
+  padding: 16px 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
   ::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
@@ -150,14 +175,21 @@ const Length = styled.span`
   color: black;
 `;
 const BrandSearch = styled.input`
+  display: block;
+  margin: auto 0;
+  font-size: 14px;
   padding: 16px 108px 16px 12px;
-  font-size: 16px;
   border: 1px solid #ddd;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   cursor: default;
   ::placeholder {
     color: #aaa;
   }
+  ${props =>
+    props.isBrandChecked &&
+    css`
+      background-color: #f5f5f5;
+    `}
 `;
 const BrandCheckBox = styled.div`
   display: inline-block;
@@ -175,6 +207,13 @@ const BrandExistCheck = styled.span`
     width: 20px;
     height: 20px;
     background: url("/assets/images/ui/ico_checkbox.png") no-repeat;
-    background-position: -20px 0;
+    background-position: 0px 0;
   }
+  ${props =>
+    props.isBrandChecked &&
+    css`
+      :before {
+        background-position: -20px 0;
+      }
+    `}
 `;
