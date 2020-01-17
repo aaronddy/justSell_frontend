@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import BasicInfoInputBox from "../ProductRegistration/BasicInfoInputBox";
 import SalesInfoBox from "../ProductRegistration/SalesInfoBox";
 export default function RegistrationBox({ name, status, children }) {
@@ -9,7 +9,7 @@ export default function RegistrationBox({ name, status, children }) {
   };
   return (
     <BasicInfo>
-      <InfoWrap>
+      <InfoWrap modal={modal}>
         <Name>
           <P>{name}</P>
         </Name>
@@ -19,7 +19,7 @@ export default function RegistrationBox({ name, status, children }) {
           </InfoStatus>
         )}
         <ButtonWrapper>
-          <Button onClick={changeModal}></Button>
+          <Button onClick={changeModal} modal={modal}></Button>
         </ButtonWrapper>
       </InfoWrap>
       {/* children들 */}
@@ -36,10 +36,15 @@ const BasicInfo = styled.div`
   border-radius: 4px;
 `;
 const InfoWrap = styled.div`
-  padding: 24px 0px;
+  padding: 24px 0 16px;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  ${props =>
+    props.modal &&
+    css`
+      padding: 24px 0 0;
+    `}
 `;
 const Name = styled.div`
   width: 20%;
@@ -52,21 +57,27 @@ const P = styled.p`
   padding-left: 32px;
 `;
 const InfoStatus = styled.div`
+  margin-right: 64px;
   width: 60%;
   font-size: 14px;
-  margin: auto 0;
+  /* margin: auto 0; */
+  padding-top: 4px;
   color: #007acc;
 `;
 const ButtonWrapper = styled.div`
   padding-right: 3%;
-  margin: auto 0;
 `;
 const Button = styled.button`
   display: block;
   background-image: url("/assets/images/ui/header_btn.png");
-  background-position: -34px 0;
+  background-position: -33px 0;
   background-size: 65px 33px;
   background-repeat: no-repeat;
-  width: 32px;
+  width: 33px;
   height: 34px;
+  ${props =>
+    props.modal &&
+    css`
+      background-position: 0px 0;
+    `}
 `;

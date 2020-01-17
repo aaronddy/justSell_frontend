@@ -37,8 +37,8 @@ const TdWrap2 = styled(TdWrap)`
   text-align: left;
   display: flex;
   flex-direction: row;
-  align-content: center;
   line-height: 1.3rem;
+  align-content: center;
 `;
 const Image = styled.div`
   background-image: url("/assets/images/order_state/order_list_img.png");
@@ -47,7 +47,7 @@ const Image = styled.div`
   width: 4rem;
   height: 4rem;
   display: inline-block;
-  padding-right: 3rem;
+  padding-right: 4rem;
 `;
 const TdWrap3 = styled(TdWrap)`
   color: black;

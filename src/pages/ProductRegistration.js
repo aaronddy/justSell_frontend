@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import Layout from "../components/layouts/Layout";
 import styled from "styled-components";
+
 import RegistrationBox from "../components/ProductRegistration/RegistrationBox";
 import BasicInfoInputBox from "../components/ProductRegistration/BasicInfoInputBox";
 import SalesInfoBox from "../components/ProductRegistration/SalesInfoBox";
 import ImageInfoInputBox from "../components/ProductRegistration/ImageInfoInputBox";
 import DeliveryInputBox from "../components/ProductRegistration/DeliveryInputBox";
 import ExtraInfoInputBox from "../components/ProductRegistration/ExtraInfoInputBox";
+import axios from "axios";
 ProductRegistration.Layout = Layout;
+
+const filterList = [
+  "start_delivery_address_RJ",
+  "return_delivery_address_RJ",
+  "start_delivery_address_extraddress",
+  "return_delivery_address_extraddress"
+];
 
 export default function ProductRegistration() {
   const [basicInfoData, setBasicInfoData] = useState({
@@ -27,7 +36,7 @@ export default function ProductRegistration() {
   const [detail_image, setDetail_image] = useState("");
   const [deliveryInfoData, setDeliveryInfoData] = useState({
     delivery_company: "",
-    delivery_fee: "",
+    delivery_fee: "2500",
     return_delivery_fee: "",
     start_delivery_address_RJ: "",
     start_delivery_address: "",
@@ -48,10 +57,7 @@ export default function ProductRegistration() {
     setBasicInfoData({ ...basicInfoData, [name]: value });
   };
   const salesInfoDataHandler = e => {
-    console.log("sales e", e);
     const { name, value } = e.target;
-    console.log("sales name", name);
-    console.log("sales value", value);
     setSalesInfoData({ ...salesInfoData, [name]: value });
   };
   //product_tax toggle
@@ -99,6 +105,48 @@ export default function ProductRegistration() {
   const extraInfoDataHandler = e => {
     const { name, value } = e.target;
     setExtraInfoData(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const sendProductDataToServer = () => {
+    const filterDeliveryInfoData = Object.keys(deliveryInfoData)
+      .filter(item => !filterList.includes(item))
+      .reduce((acc, cur) => {
+        acc[cur] = deliveryInfoData[cur];
+        return acc;
+      }, {});
+    console.log("filterDeliveryInfoData: ", filterDeliveryInfoData);
+    let WholeInfoData = {
+      ...basicInfoData,
+      ...salesInfoData,
+      ...filterDeliveryInfoData,
+      start_delivery_address: `${deliveryInfoData.start_delivery_address} ${deliveryInfoData.start_delivery_address_extraddress}`,
+      return_delivery_address: `${deliveryInfoData.return_delivery_address} ${deliveryInfoData.return_delivery_address_extraddress}`,
+      ...extraInfoData
+    };
+    console.log("WholeInfoData: ", WholeInfoData);
+    axios
+      // .post("http://3.15.9.70:8080/product/productregister", WholeInfoData)
+      .post(
+        "http://18.191.159.217:8080/product/productregister",
+        WholeInfoData,
+        {
+          headers: {
+            Authorization:
+              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTB9._kxKiFvfLCk0TNHAXxowRQf3_PK9BVw4KngMH0cB6m8"
+          }
+        }
+      )
+      .then(res => {
+        console.log("then res: ", res);
+        console.log("then res.data: ", res.data);
+      })
+      .catch(error => console.log(error));
+
+    ////필드값 존재여부검사(보완필요)
+    // let checkInput = Object.values(WholeInfoData).reduce((acc, cur) => {
+    //   if (!cur) return false;
+    //   else return acc && cur;
+    // }, true);
   };
   return (
     <Wrapper>
@@ -150,6 +198,11 @@ export default function ProductRegistration() {
             extraInfoDataHandler={extraInfoDataHandler}
           />
         </RegistrationBox>
+        <EnrollWrapper>
+          <EnrollButton onClick={sendProductDataToServer}>
+            등록하기
+          </EnrollButton>
+        </EnrollWrapper>
       </H2Wrapper>
     </Wrapper>
   );
@@ -169,4 +222,15 @@ const H2Wrapper = styled.div`
 const H2 = styled.h2`
   font-size: 24px;
   font-weight: bold;
+`;
+const EnrollWrapper = styled.div`
+  text-align: right;
+`;
+const EnrollButton = styled.button`
+  border-radius: 4px;
+  border: 2px solid #448aff;
+  background-color: #0891e4;
+  font-size: 16px;
+  color: #fafafa;
+  padding: 12px 64px;
 `;

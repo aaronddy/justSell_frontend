@@ -76,6 +76,7 @@ export default function InputType1({
         <Button>{btnName}</Button>
       </Event>
     );
+
   if (btnName === "첨부하기") {
     fileInput = (
       <Event>

@@ -23,7 +23,14 @@ export default function DeliveryInputBox({
   } = deliveryInfoData;
   const [startDeliveryPopup, setStartDeliveryPopup] = useState(false);
   const [returnDeliveryPopup, setReturnDeliveryPopup] = useState(false);
-
+  const [toggleStartAddress, setToggleStartAddress] = useState(false);
+  const [toggleReturnAddress, setToggleReturnAddress] = useState(false);
+  const toggleAddress = name => () => {
+    console.log("test");
+    console.log(name);
+    if (name == "start") setToggleStartAddress(!toggleStartAddress);
+    else if (name == "return") setToggleReturnAddress(!toggleReturnAddress);
+  };
   const togglePopup = name => () => {
     if (name === "startDeliveryPopup")
       setStartDeliveryPopup(!startDeliveryPopup);
@@ -80,14 +87,16 @@ export default function DeliveryInputBox({
       {/* 반품/교환 배송비 (편도) */}
       <InputWrap>
         <Title>
-          <h3> 반품/교환 배송비 (편도) </h3>
+          <h3>
+            반품/교환 <br /> 배송비(편도)
+          </h3>
         </Title>
         <ReturnArea>
           <ProductNameInput
             type="number"
             placeholder="3000"
-            name="delivery_fee"
-            value={delivery_fee}
+            name="return_delivery_fee"
+            value={return_delivery_fee}
             onChange={deliveryInfoDataHandler}
           />
           <Won>원(편도)</Won>
@@ -144,7 +153,12 @@ export default function DeliveryInputBox({
             />
           </AddressWrap>
           <BrandCheckBox>
-            <AddressExistCheck>사업자 주소 동일 적용</AddressExistCheck>
+            <AddressExistCheck
+              onClick={toggleAddress("start")}
+              toggleStartAddress={toggleStartAddress}
+            >
+              사업자 주소 동일 적용
+            </AddressExistCheck>
           </BrandCheckBox>
         </AddressArea>
       </InputWrap>
@@ -184,7 +198,7 @@ export default function DeliveryInputBox({
               onChange={deliveryInfoDataHandler}
             />
             <SearchAddress
-              width={210}
+              width={205}
               type="text"
               placeholder="서울특별시 송파구 문정도 150-4"
               name="return_delivery_address"
@@ -195,14 +209,19 @@ export default function DeliveryInputBox({
               color="white"
               type="text"
               placeholder="국제빌딩 7층 38호 아이에스샵"
-              width={210}
+              width={205}
               name="return_delivery_address_extraddress"
               value={return_delivery_address_extraddress}
               onChange={deliveryInfoDataHandler}
             />
           </AddressWrap>
           <BrandCheckBox>
-            <AddressExistCheck>출고지 주소 동일 적용</AddressExistCheck>
+            <AddressExistCheck
+              onClick={toggleAddress("return")}
+              toggleReturnAddress={toggleReturnAddress}
+            >
+              출고지 주소 동일 적용
+            </AddressExistCheck>
           </BrandCheckBox>
         </AddressArea>
       </InputWrap>
@@ -220,17 +239,18 @@ export default function DeliveryInputBox({
 }
 
 const CheckAreaWrapper = styled.div`
-  max-width: 900px;
+  max-width: 1400px;
   width: 100%;
   margin: 24px auto;
 `;
 const Title = styled.div`
-  display: inline-block;
+  display: block;
+  margin: auto 0;
   width: 15%;
   font-size: 15px;
   font-weight: medium;
   color: #1a1a1a;
-  padding: 16px 20px;
+  padding: 12px 20px;
   text-align: right;
 `;
 const EventArea = styled.div`
@@ -246,12 +266,13 @@ const InputWrap = styled.div`
   margin-top: 12px;
 `;
 const CategorySearchButton = styled.button`
-  display: inline-block;
+  display: block;
+  margin: auto 0;
   background-color: white;
   border-radius: 4px;
   border: 1px solid #0d99de;
   color: #0d99de;
-  padding: 0 20px;
+  padding: 8px 20px;
   font-size: 14px;
   ${({ edit }) =>
     edit &&
@@ -265,7 +286,10 @@ const SearchWrap = styled.div`
 `;
 
 const SearchInput = styled.input`
-  padding: 16px 108px 16px 12px;
+  display: block;
+  margin: auto 0;
+  padding: 12px 108px 12px 12px;
+  border: 1px solid #ddd;
   font-size: 16px;
   ::placeholder {
     color: rgba(0, 0, 0, 0.3);
@@ -275,17 +299,17 @@ const SearchInput = styled.input`
 const SearchIcon = styled.img`
   display: inline-block;
   position: absolute;
-  top: 22%;
+  top: 24%;
   right: 2%;
-  width: 30px;
-  height: 28px;
+  width: 24px;
+  height: 22px;
 `;
 
 const SearchAddress = styled.input`
-  padding: 16px 0 16px 12px;
-  width: 60px;
+  padding: 12px 0 12px 8px;
+  width: 100px;
   margin-left: 12px;
-  font-size: 16px;
+  font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 3px;
   background-color: #f5f5f5;
@@ -304,20 +328,20 @@ const SearchAddress = styled.input`
       width: ${width}px;
     `}
 `;
+const AddressWrap = styled.div`
+  position: relative;
+  margin-left: 13%;
+`;
 const BrandCheckBox = styled.div`
   display: inline-block;
   position: relative;
   margin: auto 12px;
 `;
 
-const AddressWrap = styled.div`
-  position: relative;
-  margin-left: 16.5%;
-  width: 62%;
-`;
 const AddressExistCheck = styled.span`
   padding-left: 28px;
-  font-size: 13px;
+  letter-spacing: -1px;
+  font-size: 12px;
   :before {
     display: block;
     content: "";
@@ -327,16 +351,30 @@ const AddressExistCheck = styled.span`
     width: 20px;
     height: 20px;
     background: url("/assets/images/ui/ico_checkbox.png") no-repeat;
-    background-position: -20px 0;
   }
+  ${props =>
+    props.toggleStartAddress &&
+    css`
+      :before {
+        background-position: -20px 0;
+      }
+    `}
+  ${props =>
+    props.toggleReturnAddress &&
+    css`
+      :before {
+        background-position: -20px 0;
+      }
+    `}
 `;
 
 const DeliverPrice = styled.div`
   margin: auto 0;
+  padding-bottom: 7px;
   color: #0d99de;
 `;
 const FullAddress = styled.div`
-  padding: 8px 0 8px 18%;
+  padding: 8px 0 8px 14%;
   font-size: 12px;
   color: #616161;
 `;
@@ -361,10 +399,11 @@ const ReturnArea = styled.div`
   margin: auto 0;
 `;
 const ProductNameInput = styled.input`
+  display: block;
+  margin: auto 0;
   width: 10%;
-  padding-left: 12px;
-  height: 36px;
-  font-size: 16px;
+  padding: 10px 12px;
+  font-size: 14px;
   border: 1px solid #ddd;
   ::placeholder {
     color: rgba(0, 0, 0, 0.3);

@@ -4,8 +4,10 @@ import Layout from "../components/layouts/Layout";
 Admin.Layout = Layout;
 import AdminBox from "../components/Admin/AdminBox";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Admin() {
+  const router = useRouter();
   return (
     <>
       <Background>
@@ -18,7 +20,9 @@ export default function Admin() {
               </Text>
             </div>
             <Link href="/">
-              <Button>충전금 충전하기</Button>
+              <Button onClick={() => router.push("/charge")}>
+                충전금 충전하기
+              </Button>
             </Link>
           </TextContainer>
           <AdminBox></AdminBox>

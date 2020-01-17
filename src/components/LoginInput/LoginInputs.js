@@ -21,7 +21,7 @@ const LoginInputs = ({ apple }) => {
 
   const onSubmit = e => {
     console.log("Id: ", userId, "pw: ", userPw);
-    fetch("http://3.133.82.146:8080/user/signin", {
+    fetch("http://18.191.159.217:8080/user/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
