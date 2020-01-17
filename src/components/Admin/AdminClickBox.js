@@ -20,7 +20,7 @@ const AdminClickBox = () => {
 
   return (
     <>
-      <Link href="/">
+      <Link href="/orderlist">
         <DivBox
           id={1}
           onMouseEnter={handleHover}
@@ -74,7 +74,7 @@ const AdminClickBox = () => {
           />
         </DivBox>
       </Link>
-      <Link href="/">
+      <Link href="/charge">
         <DivBox
           id={3}
           onMouseEnter={handleHover}
