@@ -36,8 +36,7 @@ const TdWrap2 = styled(TdWrap)`
   border-left: 1px solid #ececec;
   text-align: left;
   display: flex;
-  flex-direction: row;
-  align-content: center;
+  align-items: center;
   line-height: 1.3rem;
 `;
 const Image = styled.div`
@@ -47,7 +46,7 @@ const Image = styled.div`
   width: 4rem;
   height: 4rem;
   display: inline-block;
-  padding-right: 3rem;
+  padding-right: 6rem;
 `;
 const TdWrap3 = styled(TdWrap)`
   color: black;

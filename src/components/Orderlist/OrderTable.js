@@ -21,15 +21,21 @@ export default function OrderTable() {
 
   const connect = () => {
     const token = sessionStorage.getItem("access_token");
-    axios
-      .post({
-        url: "http://18.221.2.26:8080/order/ordersview",
-        headers: { Authorization: token },
-        data: { order_status: "1" }
-      })
+    axios({
+      url: "http://18.191.159.217:8080/order/ordersview",
+      method: "post",
+      headers: {
+        Authorization: token
+      },
+      data: {
+        order_status: "1",
+        start_date: "2020-01-10 07:09:12.819234",
+        end_date: "2020-01-20 07:09:12.819234"
+      }
+    })
       .then(res => {
-        console.log(res);
-        setData(res);
+        console.log(res.data.USER_ORDERS);
+        setData(res.data.USER_ORDERS);
       })
       .catch(res => {
         console.log("error");
@@ -87,17 +93,6 @@ export default function OrderTable() {
     <>
       <TableWrap>
         <tbody>
-          {/* ---first---
-        <TrWrap>
-          <Keyword_th>상품명검색</Keyword_th>
-          <TdWrap>
-            <Search name="looking for">
-              <option value="search">상품명</option>
-            </Search>
-            <TypeBox type="textarea" className="type" />
-          </TdWrap>
-        </TrWrap> */}
-          {/* ---second--- */}
           <TrWrap>
             <Keyword_th>주문상태</Keyword_th>
             <TdWrap>
@@ -174,7 +169,7 @@ export default function OrderTable() {
         <Btn1 onClick={connect}>검색하기</Btn1>
         <Btn2 onClick={resetData}>초기화</Btn2>
       </OrderBtn>
-      <ProductList data={data} />
+      <ProductList dataArr={data} />
     </>
   );
 }
