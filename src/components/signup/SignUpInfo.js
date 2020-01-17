@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import InputType1 from "./InputType1";
 import InputType2 from "./InputType2";
 import InputType4 from "./InputType4";
 import SignButton from "../shared/SignButton";
 
-export default function SignUpInfo({ handleStep, infoState, infoDispatch }) {
+export default function SignUpInfo({
+  handleStep,
+  infoState,
+  managerEmailGroupState,
+  managerEmailGroupDispatch,
+  infoDispatch
+}) {
   useEffect(() => {
     window.scrollTo(0, 100);
   }, []);
+  const { password, password_check } = infoState;
   return (
     <div>
       {/* 가입 여부 확인 */}
@@ -27,7 +34,7 @@ export default function SignUpInfo({ handleStep, infoState, infoDispatch }) {
         <InputType2
           name="비밀번호*"
           type="password"
-          state={infoState.password}
+          state={password}
           inputName={"password"}
           dispatch={infoDispatch}
         />
@@ -37,10 +44,17 @@ export default function SignUpInfo({ handleStep, infoState, infoDispatch }) {
         <InputType2
           name="비밀번호 확인*"
           type="password"
-          state={infoState.password_check}
+          state={password_check}
           inputName={"password_check"}
           dispatch={infoDispatch}
         />
+        {password &&
+          password.length === password_check.length &&
+          (password !== password_check ? (
+            <CodeMore color="#F42C26">비밀번호가 일치하지 않습니다.</CodeMore>
+          ) : (
+            <CodeMore color="#3EC84E">비밀번호가 일치합니다.</CodeMore>
+          ))}
       </CheckAreaWrapper>
 
       {/* 사업자 정보 입력 */}
@@ -100,11 +114,11 @@ export default function SignUpInfo({ handleStep, infoState, infoDispatch }) {
         <InputType4
           name="담당자 이메일*"
           type="text"
-          state={infoState.manager_email}
-          state2={infoState.manager_email2}
-          inputName="manager_email"
+          state1={managerEmailGroupState.manager_email1}
+          state2={managerEmailGroupState.manager_email2}
+          inputName1="manager_email1"
           inputName2="manager_email2"
-          infoDispatch={infoDispatch}
+          managerEmailGroupDispatch={managerEmailGroupDispatch}
         />
       </CheckAreaWrapper>
       <SignButton name={"다음단계"} handleStep={handleStep} nextPage={2} />
@@ -123,8 +137,12 @@ const Title = styled.h1`
   color: #1a1a1a;
 `;
 const CodeMore = styled.p`
-  text-align: center;
+  padding-left: 23.5%;
   margin-top: 6px;
   font-size: 11px;
-  padding-right: 54px;
+  ${props =>
+    props.color &&
+    css`
+      color: ${props.color};
+    `}
 `;

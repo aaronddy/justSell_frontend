@@ -11,7 +11,7 @@ export default function InputType2({ name, type, state, inputName, dispatch }) {
             value={state}
             name={inputName}
             onChange={e => {
-              dispatch({ action: e.target });
+              dispatch(e.target);
             }}
           />
         </Event>
@@ -41,4 +41,5 @@ const Input = styled.input`
   border: 1px solid #b3b3b3;
   vertical-align: middle;
   border-radius: 2px;
+  background-color: #fefefe;
 `;
