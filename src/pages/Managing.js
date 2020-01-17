@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import ItemTable from "../components/Managing/ItemTable";
+import ItemList from "../components/Managing/ItemList";
 import Layout from "../components/layouts/Layout";
-OrderList.Layout = Layout;
+Managing.Layout = Layout;
 
-export default function OrderList() {
+export default function Managing() {
   return (
     <Container>
       <TableContainer>
@@ -19,7 +19,8 @@ export default function OrderList() {
             연동하기
           </BtnToEleven>
         </TitleWrapper>
-        <ItemTable />
+        {/* <ItemTable /> */}
+        <ItemList />
       </TableContainer>
     </Container>
   );

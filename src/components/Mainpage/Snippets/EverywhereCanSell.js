@@ -91,7 +91,9 @@ const ContentArea = styled.ul`
 `;
 
 const ContentLi = styled.li`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin-top: 6rem;
 `;

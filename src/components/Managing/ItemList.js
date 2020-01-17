@@ -1,46 +1,59 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Items from "./Items";
+import axios from "axios";
 
 export default function ProductList() {
   const [data, setData] = useState([]);
-
   useEffect(() => {
-    fetch("http://localhost:3000/assets/data/orderdata.json")
-      .then(res => res.json())
-      .then(res => setData(res.data));
+    const token = sessionStorage.getItem("access_token");
+
+    axios({
+      url: "http://18.191.159.217:8080/product/myproducts",
+      method: "GET",
+      headers: {
+        Authorization: token
+      },
+      data: {}
+    })
+      .then(res => {
+        console.log(res.data.MY_PRODUCTS);
+        setData(res.data.MY_PRODUCTS);
+      })
+      .catch(res => {
+        console.log("error");
+      });
   }, []);
-  console.log(data);
+
+  const list = data.map((product, index) => (
+    <Items
+      info={product.vendorcode}
+      product_name={product.product_name}
+      buyer={product.brand}
+      taker={product.supply_price}
+      price={product.sale_price}
+      post_price={product.minimum_buying}
+      order_state={product.stock_amount}
+      key={index}
+    />
+  ));
 
   return (
     <ListContainer>
       <Table>
         <thead>
           <TrContainer>
-            <TdWrap>주문일시</TdWrap>
-            <TdWrap2>주문상품</TdWrap2>
-            <TdWrap3>주문자</TdWrap3>
-            <TdWrap3>받는분</TdWrap3>
-            <TdWrap3>상품금액</TdWrap3>
-            <TdWrap3>배송비</TdWrap3>
-            <TdWrap3>주문상태</TdWrap3>
+            <TdWrap>상품코드</TdWrap>
+            <TdWrap2>상품명</TdWrap2>
+            <TdWrap3>브랜드</TdWrap3>
+            <TdWrap3>공급가</TdWrap3>
+            <TdWrap3>판매가</TdWrap3>
+            <TdWrap3>최소구매량</TdWrap3>
+            <TdWrap3>재고현황</TdWrap3>
           </TrContainer>
         </thead>
 
-        <tbody>
-          {data.map((product, index) => (
-            <Items
-              date={product.date}
-              product_name={product.product_name}
-              buyer={product.buyer}
-              taker={product.taker}
-              price={product.price}
-              post_price={product.post_price}
-              order_state={product.order_state}
-              key={index}
-            />
-          ))}
-        </tbody>
+        <tbody>{list}</tbody>
       </Table>
     </ListContainer>
   );
@@ -69,7 +82,7 @@ const TdWrap = styled.td`
 `;
 const TdWrap2 = styled(TdWrap)`
   border-left: 1px solid #ececec;
-  width: 20%;
+  width: 18%;
 `;
 
 const TdWrap3 = styled(TdWrap2)`
