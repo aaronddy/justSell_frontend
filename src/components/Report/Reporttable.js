@@ -133,6 +133,7 @@ export default Reporttable;
 const Container = styled.div`
   width: 100%;
   max-width: 1180px;
+  padding: 48px 0 80px;
   /* border: 1px solid black; */
   display: flex;
   justify-content: space-around;

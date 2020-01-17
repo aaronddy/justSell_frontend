@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { DatePicker } from "antd";
 import ProductList from "./ProductList";
 import InputRadio from "./Input.Radio";
 import axios from "axios";
-
 const { RangePicker } = DatePicker;
-
 const onChange = (date, dateString) => {
   console.log(date, dateString);
 };
-
 export default function OrderTable() {
   const [today, setToday] = useState(false);
   const [half, setHalf] = useState(false);
@@ -18,9 +15,12 @@ export default function OrderTable() {
   const [total, setTotal] = useState(false);
   const [name, setName] = useState("");
   const [data, setData] = useState([]);
-
+  useEffect(() => {
+    // const token = window.sessionStorage.getItem("access_token");
+    // console.log(window.sessionStorage.getItem("access_token"));
+  }, []);
   const connect = () => {
-    const token = sessionStorage.getItem("access_token");
+    const token = window.sessionStorage.getItem("access_token");
     axios({
       url: "http://18.191.159.217:8080/order/ordersview",
       method: "post",
@@ -34,14 +34,13 @@ export default function OrderTable() {
       }
     })
       .then(res => {
-        console.log(res.data.USER_ORDERS);
+        console.log("res: ", res.data.USER_ORDERS);
         setData(res.data.USER_ORDERS);
       })
       .catch(res => {
         console.log("error");
       });
   };
-
   const clickHandler = id => {
     if (id === "1") {
       setToday(!today);
@@ -57,7 +56,6 @@ export default function OrderTable() {
     }
     console.log(id);
   };
-
   const resetData = () => {
     setData([]);
     console.log(data);
@@ -173,19 +171,17 @@ export default function OrderTable() {
     </>
   );
 }
-
 const TableWrap = styled.table`
   border: 1px solid #dddddd;
   border-bottom: none;
-  width: 93.5%;
-  margin: 0 3rem;
+  width: 92%;
+  margin: 0 auto;
 `;
 const TrWrap = styled.tr`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #dddddd;
 `;
-
 const Keyword_th = styled.th`
   border-right: 1px solid #dddddd;
   background-color: #fafafa;
@@ -199,7 +195,6 @@ const CheckBoxDiv = styled.div`
   display: inline-block;
   margin-right: 1.5rem;
 `;
-
 const TdWrap = styled.td`
   display: inline-block;
   margin-left: 3rem;
@@ -208,7 +203,6 @@ const TdWrap = styled.td`
 const TableLi_date = styled(TdWrap)`
   margin-left: 0.5rem;
 `;
-
 const DateWrap = styled(CheckBoxDiv)`
   display: flex;
   flex-direction: row;
@@ -249,7 +243,6 @@ const DateTerm = styled.button`
         color: white;
       `}
 `;
-
 const OrderBtn = styled.div`
   width: 100%;
   padding-top: 3rem;
@@ -272,13 +265,11 @@ const Btn1 = styled.a`
   padding: 1rem 0;
   border-radius: 2px;
 `;
-
 const Btn2 = styled(Btn1)`
   background: #e5e5e5;
   color: black;
   font-weight: normal;
 `;
-
 // const Search = styled.select`
 //   font-size: 0.95rem;
 //   text-align: center;

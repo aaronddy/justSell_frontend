@@ -164,6 +164,7 @@ export default function ProductRegistration() {
         else alert("상품 등록 실패");
       })
       .catch(error => console.log(error));
+
     ////필드값 존재여부검사(보완필요)
     // let checkInput = Object.values(WholeInfoData).reduce((acc, cur) => {
     //   if (!cur) return false;

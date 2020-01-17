@@ -76,8 +76,8 @@ export default function Signup() {
         company_manager_phone_number: infoState.manager_phone_number
       };
       axios
-        .post("http://3.15.9.70:8080/user/signup", data)
-        .then(res => res.message === "SUCCESS" && setStepStatus(next))
+        .post("http://18.191.159.217:8080/user/signup", data)
+        .then(res => res.data.message === "SUCCESS" && setStepStatus(next))
         .catch(error => {
           console.log("catch error :", error);
           console.log("catch error.response :", error.response);

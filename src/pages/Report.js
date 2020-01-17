@@ -5,17 +5,14 @@ Report.Layout = Layout;
 import ReportInfo from "../components/Report/ReportInfo";
 import dynamic from "next/dynamic";
 import Reporttable from "../components/Report/Reporttable";
-
 const ReportGraph = dynamic(() => import("../components/Report/ReportGraph"), {
   ssr: false
 });
-
 export default function Report(props) {
   const [month, setMonth] = useState(1);
   const [nextMonth, setNextMonth] = useState(2);
   const [lastMonth, setLastMonth] = useState(12);
   const [years, setYear] = useState(2019);
-
   const plusChange = () => {
     setMonth(month + 1);
     setNextMonth(nextMonth + 1);
@@ -46,7 +43,6 @@ export default function Report(props) {
       setLastMonth(12);
     }
   };
-
   return (
     <>
       <Container>
@@ -79,7 +75,6 @@ export default function Report(props) {
     </>
   );
 }
-
 const Container = styled.div`
   width: 100%;
   height: auto;
@@ -90,7 +85,6 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-
 const Header = styled.header`
   width: 100%;
   max-width: 1180px;
@@ -137,10 +131,10 @@ const DateBox = styled.div`
 const NextMon = styled.div`
   width: 48px;
 `;
-const LastMon = styled.div`
-  width: 48px;
-`;
+const LastMon = styled(NextMon)``;
 const Mon = styled.div`
+  text-align: center;
+  padding-top: 22px;
   width: 156px;
 `;
 const Span = styled.span`
@@ -152,6 +146,7 @@ const P = styled.p`
 `;
 const P2 = styled.p`
   font-size: 20px;
+  padding-top: 20px;
 `;
 const LeftImg = styled.div`
   background-image: url("/assets/images/report/date_btn_left.png");
@@ -169,14 +164,11 @@ const RightImg = styled.div`
   background-size: 20px 20px;
   cursor: pointer;
 `;
-
 // Report.getInitialProps = async function() {
 //   const res = await fetch("http://localhost:3000/data/report.json");
 //   console.log(res);
 //   const data = await res.json();
-
 //   console.log(`Show data fetched. Count: ${data.data}`, data.data);
-
 //   return {
 //     shows: data.data
 //   };

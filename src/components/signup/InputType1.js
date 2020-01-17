@@ -40,7 +40,7 @@ export default function InputType1({
   };
   const sendSignCodeToServer = () => {
     axios
-      .post("http://3.15.9.70:8080/user/invitationcode", {
+      .post("http://18.191.159.217:8080/user/invitationcode", {
         invitation_code: state
       })
       .then(res => {

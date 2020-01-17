@@ -9,7 +9,7 @@ export default function Complete() {
     <CompleteWrapper>
       <H1>가입완료</H1>
       <P>가입을 축하드립니다</P>
-      <SignButton name={"메인으로"} last={true} />
+      <SignButton name={"로그인으로"} last={true} />
     </CompleteWrapper>
   );
 }

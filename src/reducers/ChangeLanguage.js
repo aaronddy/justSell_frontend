@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
         idPlaceholder: "Enter your ID",
         pwPlaceholder: "Enter your Password",
         save: "SAVE ID",
-        find: "find your ID/Password",
+        find: "find ID/Password",
         login: "LOGIN",
         signup: "Signup",
         bookMark: "BookMark",
