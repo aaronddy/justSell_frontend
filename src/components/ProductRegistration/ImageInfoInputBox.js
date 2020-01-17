@@ -25,6 +25,7 @@ export default function ImageInfoInputBox({ detail_image, setDetail_image }) {
     let data = new FormData();
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
+    //이미지업로드 하는 s3 주소 고정 바꾸지 말것
     let url = "http://3.15.9.70:8080/product/mainimageupload";
     data.append("filename", e.target.files[0]);
     axios

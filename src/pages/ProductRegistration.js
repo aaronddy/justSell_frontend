@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/layouts/Layout";
 import styled from "styled-components";
 
@@ -11,14 +11,20 @@ import ExtraInfoInputBox from "../components/ProductRegistration/ExtraInfoInputB
 import axios from "axios";
 ProductRegistration.Layout = Layout;
 
+//추가 변수
+let token = sessionStorage.getItem("access_token");
 const filterList = [
   "start_delivery_address_RJ",
   "return_delivery_address_RJ",
   "start_delivery_address_extraddress",
   "return_delivery_address_extraddress"
 ];
+let timeout = null;
 
+//함수 컴포넌트
 export default function ProductRegistration() {
+  //상태목록
+  const [notiRightPos, setNotiRightPos] = useState(-200);
   const [basicInfoData, setBasicInfoData] = useState({
     category: "",
     product_name: "",
@@ -52,6 +58,19 @@ export default function ProductRegistration() {
     search_keyword: "",
     adult_restricted: false
   });
+  //useEffect 함수
+  useEffect(() => {
+    timeout = setTimeout(() => {
+      setNotiRightPos(-200);
+    }, 2000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [notiRightPos]);
+  //함수 목록
+  const showNotification = () => {
+    setNotiRightPos(50);
+  };
   const basicInfoDataHandler = e => {
     const { name, value } = e.target;
     setBasicInfoData({ ...basicInfoData, [name]: value });
@@ -108,6 +127,8 @@ export default function ProductRegistration() {
   };
 
   const sendProductDataToServer = () => {
+    setNotiRightPos(50);
+
     const filterDeliveryInfoData = Object.keys(deliveryInfoData)
       .filter(item => !filterList.includes(item))
       .reduce((acc, cur) => {
@@ -124,6 +145,7 @@ export default function ProductRegistration() {
       ...extraInfoData
     };
     console.log("WholeInfoData: ", WholeInfoData);
+
     axios
       // .post("http://3.15.9.70:8080/product/productregister", WholeInfoData)
       .post(
@@ -131,17 +153,17 @@ export default function ProductRegistration() {
         WholeInfoData,
         {
           headers: {
-            Authorization:
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTB9._kxKiFvfLCk0TNHAXxowRQf3_PK9BVw4KngMH0cB6m8"
+            Authorization: token
           }
         }
       )
       .then(res => {
         console.log("then res: ", res);
         console.log("then res.data: ", res.data);
+        if (res.data.message === "SUCCESS") setNotiRightPos(50);
+        else alert("상품 등록 실패");
       })
       .catch(error => console.log(error));
-
     ////필드값 존재여부검사(보완필요)
     // let checkInput = Object.values(WholeInfoData).reduce((acc, cur) => {
     //   if (!cur) return false;
@@ -204,6 +226,9 @@ export default function ProductRegistration() {
           </EnrollButton>
         </EnrollWrapper>
       </H2Wrapper>
+      <NotiComponent notiRightPos={notiRightPos}>
+        상품 등록에 성공하였습니다
+      </NotiComponent>
     </Wrapper>
   );
 }
@@ -233,4 +258,16 @@ const EnrollButton = styled.button`
   font-size: 16px;
   color: #fafafa;
   padding: 12px 64px;
+`;
+
+const NotiComponent = styled.div`
+  background-color: #cddc39;
+  border-radius: 4px;
+  color: #fafafa;
+  padding: 16px;
+  position: fixed;
+  top: 100px;
+  right: ${props => props.notiRightPos}px;
+  z-index: 999;
+  transition: right 0.5s ease;
 `;
