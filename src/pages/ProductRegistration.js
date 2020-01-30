@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layouts/Layout";
 import styled from "styled-components";
-
 import RegistrationBox from "../components/ProductRegistration/RegistrationBox";
 import BasicInfoInputBox from "../components/ProductRegistration/BasicInfoInputBox";
 import SalesInfoBox from "../components/ProductRegistration/SalesInfoBox";
@@ -128,14 +127,13 @@ export default function ProductRegistration() {
 
   const sendProductDataToServer = () => {
     setNotiRightPos(50);
-
     const filterDeliveryInfoData = Object.keys(deliveryInfoData)
       .filter(item => !filterList.includes(item))
       .reduce((acc, cur) => {
         acc[cur] = deliveryInfoData[cur];
         return acc;
       }, {});
-    console.log("filterDeliveryInfoData: ", filterDeliveryInfoData);
+
     let WholeInfoData = {
       ...basicInfoData,
       ...salesInfoData,
@@ -144,10 +142,8 @@ export default function ProductRegistration() {
       return_delivery_address: `${deliveryInfoData.return_delivery_address} ${deliveryInfoData.return_delivery_address_extraddress}`,
       ...extraInfoData
     };
-    console.log("WholeInfoData: ", WholeInfoData);
 
     axios
-      // .post("http://3.15.9.70:8080/product/productregister", WholeInfoData)
       .post(
         "http://18.191.159.217:8080/product/productregister",
         WholeInfoData,
@@ -158,8 +154,6 @@ export default function ProductRegistration() {
         }
       )
       .then(res => {
-        console.log("then res: ", res);
-        console.log("then res.data: ", res.data);
         if (res.data.message === "SUCCESS") setNotiRightPos(50);
         else alert("상품 등록 실패");
       })

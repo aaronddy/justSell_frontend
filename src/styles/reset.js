@@ -174,4 +174,8 @@ input:focus {
   outline:none;
   border:0.5px solid #818181;
 }
+button:focus {
+  outline:none;
+  border:0.5px solid #818181;
+}
 `;

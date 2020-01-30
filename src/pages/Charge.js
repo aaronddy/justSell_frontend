@@ -98,7 +98,7 @@ const MyCurrentCharge = styled.div`
   max-width: 1380px;
   margin: 16px auto;
   width: 96%;
-  padding: 24px 12px;
+  padding: 26px 0px 10px;
   background: -moz-linear-gradient(
     0% 50% 0deg,
     rgba(55, 209, 187, 1) 0%,
