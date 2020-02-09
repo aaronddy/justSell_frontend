@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Items from "./Items";
 import axios from "axios";
-
+import { ajaxUrl } from "../../ajax/api";
 export default function ProductList() {
   const [data, setData] = useState([]);
   useEffect(() => {
     const token = sessionStorage.getItem("access_token");
 
     axios({
-      url: "http://18.191.159.217:8080/product/myproducts",
+      url: `${ajaxUrl}/product/myproducts`,
       method: "GET",
       headers: {
         Authorization: token

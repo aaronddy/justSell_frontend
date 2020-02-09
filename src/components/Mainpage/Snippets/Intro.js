@@ -13,13 +13,13 @@ export default class Intro extends Component {
           <Main>
             <Header>
               <Wrapper>
-                <a href="/main.html" class="main_section_1_header_logo">
+                <a href="/main.html" className="main_section_1_header_logo">
                   <img
                     src="/assets/images/justsell_new_logo.png"
                     alt="mainLogo"
                   />
                 </a>
-                <Link href="/login">
+                <Link href="/Login">
                   <HeaderBtn>
                     <HeaderBtnH1>JustSell 이용하기</HeaderBtnH1>
                   </HeaderBtn>
@@ -27,13 +27,13 @@ export default class Intro extends Component {
               </Wrapper>
             </Header>
             <SectionPc>
-              <div class="main_section_1_textarea">
+              <div className="main_section_1_textarea">
                 <SectionTitle>
                   실패 없는 고수익
                   <br />
                   저스트셀 창업 플랫폼
                 </SectionTitle>
-                <ul class="main_section_1_textarea_chkList">
+                <ul className="main_section_1_textarea_chkList">
                   <CheckListli>
                     <CheckListH1>
                       <Check />
@@ -58,7 +58,7 @@ export default class Intro extends Component {
                 </Link>
               </div>
               <GoDown>
-                <img class="main_goDown" alt="" />
+                <img className="main_goDown" alt="" />
               </GoDown>
             </SectionPc>
           </Main>

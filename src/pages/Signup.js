@@ -6,6 +6,7 @@ import Agreement from "../components/signup/Agreement";
 import SignUpInfo from "../components/signup/SignUpInfo";
 import Complete from "../components/signup/Complete";
 import axios from "axios";
+import {ajaxUrl} from "../ajax/api";
 
 let invitationCodeAuthed = false;
 export default function Signup() {
@@ -76,7 +77,7 @@ export default function Signup() {
         company_manager_phone_number: infoState.manager_phone_number
       };
       axios
-        .post("http://18.191.159.217:8080/user/signup", data)
+        .post(`${ajaxUrl}/user/signup`, data)
         .then(res => res.data.message === "SUCCESS" && setStepStatus(next))
         .catch(error => {
           console.log("catch error :", error);

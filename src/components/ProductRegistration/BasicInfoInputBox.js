@@ -29,14 +29,14 @@ export default function BasicInfoInputBox({
             <SearchInput
               type="text"
               name="category"
-              placeholder="키워드로 검색 예)운동화"
+              placeholder="키워드"
               value={category}
               onChange={basicInfoDataHandler}
             />
-            <SearchIcon
+            {/* <SearchIcon
               src="/assets/images/ui/ico_search.png"
               alt="searchIcon"
-            />
+            /> */}
           </SearchWrap>
         </EventArea>
       </InputWrap>
@@ -67,17 +67,17 @@ export default function BasicInfoInputBox({
           <SearchWrap title={true}>
             <BrandSearch
               type="text"
-              placeholder="브랜드명을 검색하세요"
+              placeholder="브랜드명"
               name="brand"
               value={brand}
               disabled={isBrandChecked ? "disabled" : ""}
               isBrandChecked={isBrandChecked}
               onChange={basicInfoDataHandler}
             />
-            <SearchIcon
+            {/* <SearchIcon
               src="/assets/images/ui/ico_search.png"
               alt="searchIcon"
-            />
+            /> */}
           </SearchWrap>
           <BrandCheckBox>
             <BrandExistCheck

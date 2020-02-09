@@ -5,9 +5,9 @@ export default function SignButton({ name, handleStep, nextPage, last }) {
   return (
     <>
       {last ? (
-        <Link href="/login">
+        <a href="/login">
           <Button>{name}</Button>
-        </Link>
+        </a>
       ) : (
         <Button
           onClick={() => {

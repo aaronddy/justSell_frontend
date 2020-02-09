@@ -8,10 +8,11 @@ import ImageInfoInputBox from "../components/ProductRegistration/ImageInfoInputB
 import DeliveryInputBox from "../components/ProductRegistration/DeliveryInputBox";
 import ExtraInfoInputBox from "../components/ProductRegistration/ExtraInfoInputBox";
 import axios from "axios";
+import { ajaxUrl } from "../ajax/api";
 ProductRegistration.Layout = Layout;
 
 //추가 변수
-let token = sessionStorage.getItem("access_token");
+
 const filterList = [
   "start_delivery_address_RJ",
   "return_delivery_address_RJ",
@@ -142,17 +143,13 @@ export default function ProductRegistration() {
       return_delivery_address: `${deliveryInfoData.return_delivery_address} ${deliveryInfoData.return_delivery_address_extraddress}`,
       ...extraInfoData
     };
-
+    const token = sessionStorage.getItem("access_token");
     axios
-      .post(
-        "http://18.191.159.217:8080/product/productregister",
-        WholeInfoData,
-        {
-          headers: {
-            Authorization: token
-          }
+      .post(`${ajaxUrl}/product/productregister`, WholeInfoData, {
+        headers: {
+          Authorization: token
         }
-      )
+      })
       .then(res => {
         if (res.data.message === "SUCCESS") setNotiRightPos(50);
         else alert("상품 등록 실패");

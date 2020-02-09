@@ -25,7 +25,7 @@ export default function ExtraInfoInputBox({
           <SearchWrap>
             <SearchInput
               type="text"
-              placeholder="키워드로 검색 예)운동화"
+              placeholder="키워드 설정 예)운동화"
               name="search_keyword"
               value={search_keyword}
               onChange={extraInfoDataHandler}

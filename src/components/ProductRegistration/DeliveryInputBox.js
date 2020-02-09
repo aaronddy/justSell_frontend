@@ -63,15 +63,15 @@ export default function DeliveryInputBox({
           <SearchWrap>
             <SearchInput
               type="text"
-              placeholder="택배사 조회"
+              placeholder="택배사"
               name="delivery_company"
               value={delivery_company}
               onChange={deliveryInfoDataHandler}
             />
-            <SearchIcon
+            {/* <SearchIcon
               src="/assets/images/ui/ico_search.png"
               alt="searchIcon"
-            />
+            /> */}
           </SearchWrap>
         </EventArea>
       </InputWrap>

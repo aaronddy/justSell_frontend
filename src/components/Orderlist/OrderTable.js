@@ -4,6 +4,7 @@ import { DatePicker } from "antd";
 import ProductList from "./ProductList";
 import InputRadio from "./Input.Radio";
 import axios from "axios";
+import { ajaxUrl } from "../../ajax/api";
 const { RangePicker } = DatePicker;
 const onChange = (date, dateString) => {
   console.log(date, dateString);
@@ -20,9 +21,9 @@ export default function OrderTable() {
     // console.log(window.sessionStorage.getItem("access_token"));
   }, []);
   const connect = () => {
-    const token = window.sessionStorage.getItem("access_token");
+    const token = sessionStorage.getItem("access_token");
     axios({
-      url: "http://18.191.159.217:8080/order/ordersview",
+      url: `${ajaxUrl}/order/ordersview`,
       method: "post",
       headers: {
         Authorization: token
@@ -34,6 +35,9 @@ export default function OrderTable() {
       }
     })
       .then(res => {
+        console.log("res", res);
+        console.log("res.data", res.data);
+        console.log("res.data", res.USER_ORDERS);
         console.log("res: ", res.data.USER_ORDERS);
         setData(res.data.USER_ORDERS);
       })

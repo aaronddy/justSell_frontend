@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Router from "next/router";
 import { connect } from "react-redux";
-
+import {ajaxUrl} from "../../ajax/api";
 const LoginInputs = ({ apple }) => {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
@@ -21,7 +21,7 @@ const LoginInputs = ({ apple }) => {
 
   const onSubmit = e => {
     console.log("Id: ", userId, "pw: ", userPw);
-    fetch("http://18.191.159.217:8080/user/signin", {
+    fetch(`${ajaxUrl}/user/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

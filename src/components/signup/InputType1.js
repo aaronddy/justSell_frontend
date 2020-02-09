@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import axios from "axios";
+import {ajaxUrl} from "../../ajax/api";
 let fileInput = "";
 let companyName = "";
 export default function InputType1({
@@ -20,7 +21,7 @@ export default function InputType1({
     const data = new FormData();
     data.append("filename", e.target.files[0], e.target.files[0].name);
     axios
-      .post("http://18.222.155.204:8080/product/imageupload", data, {
+      .post(`${ajaxUrl}/product/imageupload`, data, {
         onUploadProgress: ProgressEvent => {
           console.log(
             "Upload Progress: ",
@@ -40,7 +41,7 @@ export default function InputType1({
   };
   const sendSignCodeToServer = () => {
     axios
-      .post("http://18.191.159.217:8080/user/invitationcode", {
+      .post(`${ajaxUrl}/user/invitationcode`, {
         invitation_code: state
       })
       .then(res => {
